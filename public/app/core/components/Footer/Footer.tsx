@@ -2,7 +2,7 @@ import React from 'react';
 
 import { LinkTarget } from '@grafana/data';
 import { config } from '@grafana/runtime';
-import { Icon, IconName } from '@grafana/ui';
+import { IconName } from '@grafana/ui';
 import { t } from 'app/core/internationalization';
 
 export interface FooterLink {
@@ -100,37 +100,29 @@ export interface Props {
 }
 
 export const Footer = React.memo(({ customLinks }: Props) => {
-  const links = (customLinks || getFooterLinks()).concat(getVersionLinks());
+  // const links = (customLinks || getFooterLinks()).concat(getVersionLinks());
 
   return (
     <footer className="footer">
-      <div className="text-center">
-        <ul>
-          {links.map((link) => (
-            <li key={link.text}>
-              <FooterItem item={link} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className="text-center"></div>
     </footer>
   );
 });
 
 Footer.displayName = 'Footer';
 
-function FooterItem({ item }: { item: FooterLink }) {
-  const content = item.url ? (
-    <a href={item.url} target={item.target} rel="noopener noreferrer" id={item.id}>
-      {item.text}
-    </a>
-  ) : (
-    item.text
-  );
+// function FooterItem({ item }: { item: FooterLink }) {
+//   const content = item.url ? (
+//     <a href={item.url} target={item.target} rel="noopener noreferrer" id={item.id}>
+//       {item.text}
+//     </a>
+//   ) : (
+//     item.text
+//   );
 
-  return (
-    <>
-      {item.icon && <Icon name={item.icon} />} {content}
-    </>
-  );
-}
+//   return (
+//     <>
+//       {item.icon && <Icon name={item.icon} />} {content}
+//     </>
+//   );
+// }

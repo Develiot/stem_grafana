@@ -8,19 +8,19 @@
 //  }
 //  Name: 
 //  Dimensions: 3 Fields by 7 Rows
-//  +--------------------------+-------------------------+---------------+
-//  | Name: name               | Name: mediaType         | Name: size    |
-//  | Labels:                  | Labels:                 | Labels:       |
-//  | Type: []string           | Type: []string          | Type: []int64 |
-//  +--------------------------+-------------------------+---------------+
-//  | browser_marketshare.csv  | text/csv; charset=utf-8 | 355           |
-//  | flight_info_by_state.csv | text/csv; charset=utf-8 | 681           |
-//  | gdp_per_capita.csv       | text/csv; charset=utf-8 | 4116          |
-//  | js_libraries.csv         | text/csv; charset=utf-8 | 179           |
-//  | ohlc_dogecoin.csv        | text/csv; charset=utf-8 | 191804        |
-//  | population_by_state.csv  | text/csv; charset=utf-8 | 138           |
-//  | weight_height.csv        | text/csv; charset=utf-8 | 418121        |
-//  +--------------------------+-------------------------+---------------+
+//  +--------------------------+--------------------------+---------------+
+//  | Name: name               | Name: mediaType          | Name: size    |
+//  | Labels:                  | Labels:                  | Labels:       |
+//  | Type: []string           | Type: []string           | Type: []int64 |
+//  +--------------------------+--------------------------+---------------+
+//  | browser_marketshare.csv  | application/vnd.ms-excel | 355           |
+//  | flight_info_by_state.csv | application/vnd.ms-excel | 681           |
+//  | gdp_per_capita.csv       | application/vnd.ms-excel | 4116          |
+//  | js_libraries.csv         | application/vnd.ms-excel | 179           |
+//  | ohlc_dogecoin.csv        | application/vnd.ms-excel | 191804        |
+//  | population_by_state.csv  | application/vnd.ms-excel | 138           |
+//  | weight_height.csv        | application/vnd.ms-excel | 418121        |
+//  +--------------------------+--------------------------+---------------+
 //  
 //  
 //  🌟 This was machine generated.  Do not edit. 🌟
@@ -74,13 +74,13 @@
             "weight_height.csv"
           ],
           [
-            "text/csv; charset=utf-8",
-            "text/csv; charset=utf-8",
-            "text/csv; charset=utf-8",
-            "text/csv; charset=utf-8",
-            "text/csv; charset=utf-8",
-            "text/csv; charset=utf-8",
-            "text/csv; charset=utf-8"
+            "application/vnd.ms-excel",
+            "application/vnd.ms-excel",
+            "application/vnd.ms-excel",
+            "application/vnd.ms-excel",
+            "application/vnd.ms-excel",
+            "application/vnd.ms-excel",
+            "application/vnd.ms-excel"
           ],
           [
             355,
