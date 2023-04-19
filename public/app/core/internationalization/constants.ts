@@ -1,6 +1,7 @@
 import { ResourceKey } from 'i18next';
 
 export const ENGLISH_US = 'en-US';
+export const BULGARIAN_BG = 'bg-BG';
 export const FRENCH_FRANCE = 'fr-FR';
 export const SPANISH_SPAIN = 'es-ES';
 export const GERMAN_GERMANY = 'de-DE';
@@ -25,6 +26,12 @@ export const LANGUAGES: LanguageDefinitions[] = [
     code: ENGLISH_US,
     name: 'English',
     loader: () => Promise.resolve({}),
+  },
+
+  {
+    code: BULGARIAN_BG,
+    name: 'Български',
+    loader: () => import('../../../locales/bg-BG/grafana.json'),
   },
 
   {
