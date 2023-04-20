@@ -2,174 +2,174 @@
   "_comment": "Do not manually edit this file, or update these source phrases in Crowdin. The source of truth for English strings are in the code source",
   "clipboard-button": {
     "inline-toast": {
-      "success": "Copied"
+      "success": "Копирано"
     }
   },
   "command-palette": {
     "action": {
-      "change-theme": "Change theme...",
-      "dark-theme": "Dark",
-      "light-theme": "Light",
-      "search": "Search"
+      "change-theme": "Промени изглед...",
+      "dark-theme": "Тъмно",
+      "light-theme": "Светло",
+      "search": "Търси"
     },
     "search-box": {
-      "placeholder": "Search Grafana"
+      "placeholder": "Търси в платформата"
     },
     "section": {
-      "actions": "Actions",
-      "dashboard-search-results": "дашбордs",
-      "pages": "Pages",
-      "preferences": "Preferences",
-      "recent-dashboards": "Recent dashboards"
+      "actions": "Действия",
+      "dashboard-search-results": "Табла",
+      "pages": "Страници",
+      "preferences": "Предпочитания",
+      "recent-dashboards": "Често отваряни табла"
     }
   },
   "common": {
     "locale": {
-      "default": "Default"
+      "default": "По подразбиране"
     },
-    "save": "Save"
+    "save": "Запази"
   },
   "dashboard": {
     "inspect": {
-      "actions-tab": "Actions",
-      "data-tab": "Data",
-      "error-tab": "Error",
+      "actions-tab": "Действия",
+      "data-tab": "Данни",
+      "error-tab": "Грешка",
       "json-tab": "JSON",
       "meta-tab": "Meta Data",
       "query-tab": "Query",
       "stats-tab": "Stats",
       "subtitle": "{{queryCount}} queries with total query time of {{formatted}}",
-      "title": "Inspect: {{panelTitle}}"
+      "title": "Инспектирай: {{panelTitle}}"
     },
     "inspect-data": {
-      "data-options": "Data options",
-      "dataframe-aria-label": "Select dataframe",
-      "dataframe-label": "Show data frame",
-      "download-csv": "Download CSV",
-      "download-excel-description": "Adds header to CSV for use with Excel",
-      "download-excel-label": "Download for Excel",
-      "download-logs": "Download logs",
-      "download-service": "Download service graph",
-      "download-traces": "Download traces",
-      "excel-header": "Excel header",
-      "formatted": "Formatted data",
-      "formatted-data-description": "Table data is formatted with options defined in the Field and Override tabs.",
-      "formatted-data-label": "Formatted data",
+      "data-options": "Опции за данни",
+      "dataframe-aria-label": "Избери времеви период",
+      "dataframe-label": "Покажи времеви период",
+      "download-csv": "Свали CSV",
+      "download-excel-description": "Добавя заглавия към CSV файл за работа в Excel",
+      "download-excel-label": "Изтегли в Excel",
+      "download-logs": "Свали архив",
+      "download-service": "Изтеглете оперативна графика",
+      "download-traces": "Изтеглете следи",
+      "excel-header": "Заглавия в Excel",
+      "formatted": "Форматиране на данни",
+      "formatted-data-description": "Данните в таблицата се форматират с опции, дефинирани в разделите Полета и Замяна.",
+      "formatted-data-label": "Форматирани данни",
       "panel-transforms": "Panel transforms",
-      "series-to-columns": "Series joined by time",
-      "transformation": "Series joined by time",
-      "transformations-description": "Table data is displayed with transformations defined in the panel Transform tab.",
-      "transformations-label": "Apply panel transformations"
+      "series-to-columns": "Серии, обединени по време",
+      "transformation": "Серии, обединени по време",
+      "transformations-description": "Данните от таблицата се показват с промени, дефинирани в раздела Замяна.",
+      "transformations-label": "Приложи промените"
     },
     "inspect-json": {
-      "dataframe-description": "Raw data without transformations and field config applied. ",
+      "dataframe-description": "Необработени данни без трансформации или приложена конфигурация. ",
       "dataframe-label": "DataFrame JSON (from Query)",
-      "panel-data-description": "The raw model passed to the panel visualization",
-      "panel-data-label": "Panel data",
-      "panel-json-description": "The model saved in the dashboard JSON that configures how everything works.",
-      "panel-json-label": "Panel JSON",
-      "select-source": "Select source",
-      "unknown": "Unknown Object: {{show}}"
+      "panel-data-description": "Суровият модел премина към визуализацията в панела.",
+      "panel-data-label": "Данни в панел",
+      "panel-json-description": "Моделът, записан в JSON таблото за управление, конфигурира как работи всичко.",
+      "panel-json-label": "Панел JSON",
+      "select-source": "Избери източник",
+      "unknown": "Неизвестен обект: {{show}}"
     },
     "inspect-meta": {
       "no-inspector": "No Metadata Inspector"
     },
     "inspect-stats": {
-      "data-title": "Data source stats",
-      "processing-time": "Data processing time",
-      "queries": "Number of queries",
-      "request-time": "Total request time",
-      "rows": "Total number rows",
-      "table-title": "Stats"
+      "data-title": "Статистика за източника на данни",
+      "processing-time": "Време за обработка на данните",
+      "queries": "Брой запитвания",
+      "request-time": "Общо време за заявка",
+      "rows": "Общ брой редове",
+      "table-title": "Статистика"
     },
     "toolbar": {
-      "add-panel": "Add panel",
-      "comments-show": "Show dashboard comments",
-      "mark-favorite": "Mark as favorite",
-      "open-original": "Open original dashboard",
-      "playlist-next": "Go to next dashboard",
-      "playlist-previous": "Go to previous dashboard",
-      "playlist-stop": "Stop playlist",
-      "refresh": "Refresh dashboard",
-      "save": "Save dashboard",
-      "settings": "дашборд settings",
-      "share": "Share dashboard or panel",
-      "tv-button": "Cycle view mode",
-      "unmark-favorite": "Unmark as favorite"
+      "add-panel": "Добави панел",
+      "comments-show": "Покажи коментари в таблото",
+      "mark-favorite": "Маркирай като любимо",
+      "open-original": "Отвори оригиналното табло",
+      "playlist-next": "Отиди на следващото табло",
+      "playlist-previous": "Отиди на предишното табло",
+      "playlist-stop": "Спри плейлист",
+      "refresh": "Опресняване на таблото",
+      "save": "Запази табло",
+      "settings": "Настройки на табло",
+      "share": "Споредли табло или панел",
+      "tv-button": "Режим на цикличен изглед",
+      "unmark-favorite": "Махни от любими"
     }
   },
   "datasource-onboarding": {
-    "contact-admin": "Please contact your administrator to configure data sources.",
-    "explanation": "To visualize your data, you'll need to connect it first.",
-    "new-dashboard": "New dashboard",
-    "preferred": "Connect your preferred data source:",
-    "sampleData": "Or set up a new dashboard with sample data",
-    "viewAll": "View all",
-    "welcome": "Welcome to Grafana dashboards!"
+    "contact-admin": "Моля, свържете се с вашия администратор, за да конфигурирате източници на данни.",
+    "explanation": "За да визуализирате данните си, първо трябва да ги свържете.",
+    "new-dashboard": "Ново табло",
+    "preferred": "ConnСвържете предпочитания от вас източник на данни:",
+    "sampleData": "Или създайте ново табло с примерни данни",
+    "viewAll": "Виж всички",
+    "welcome": "Добре дошли!"
   },
   "folder-picker": {
-    "loading": "Loading folders..."
+    "loading": "Зареждане на папки..."
   },
   "library-panel": {
     "add-modal": {
-      "cancel": "Cancel",
-      "create": "Create library panel",
-      "error": "Library panel with this name already exists",
-      "folder": "Save in folder",
-      "folder-description": "Library panel permissions are derived from the folder permissions",
-      "name": "Library panel name"
+      "cancel": "Отказ",
+      "create": "Създайте панел в библиотеката",
+      "error": "Това наименование вече съществува",
+      "folder": "Запази в папка",
+      "folder-description": "Достъпът за панела се управлява от папката за достъп",
+      "name": "Наименование на панел"
     }
   },
   "library-panels": {
     "save": {
-      "error": "Error saving library panel: \"{{errorMsg}}\"",
-      "success": "Library panel saved"
+      "error": "Грешка при запазване на панела: \"{{errorMsg}}\"",
+      "success": "Панелът е запазен"
     }
   },
   "nav": {
     "admin": {
-      "subtitle": "Manage server-wide settings and access to resources such as organizations, users, and licenses",
-      "title": "Server admin"
+      "subtitle": "Управлявайте настройките за целия сървър и достъпа до ресурси като организации, потребители и лицензи",
+      "title": "Админ на сървара"
     },
     "alerting": {
-      "subtitle": "Learn about problems in your systems moments after they occur",
-      "title": "Alerting"
+      "subtitle": "Научете за проблемите във вашите системи веднага след възникването им",
+      "title": "Алармиране"
     },
     "alerting-admin": {
-      "title": "Admin"
+      "title": "Админ"
     },
     "alerting-am-routes": {
-      "subtitle": "Determine how alerts are routed to contact points",
-      "title": "Notification policies"
+      "subtitle": "Определете как сигналите се насочват към точките за контакт",
+      "title": "Политики за нотификации"
     },
     "alerting-channels": {
-      "title": "Notification channels"
+      "title": "Канали за нотификации"
     },
     "alerting-groups": {
-      "subtitle": "See grouped alerts from an Alertmanager instance",
-      "title": "Groups"
+      "subtitle": "Вижте групирани аларми от Администратора",
+      "title": "Групи"
     },
     "alerting-home": {
-      "title": "Home"
+      "title": "Начало"
     },
     "alerting-legacy": {
-      "title": "Alerting (legacy)"
+      "title": "Алармиране (наследство)"
     },
     "alerting-list": {
-      "subtitle": "Rules that determine whether an alert will fire",
-      "title": "Alert rules"
+      "subtitle": "Правила, които определят дали алармата ще се активира",
+      "title": "Правила за аларми"
     },
     "alerting-receivers": {
-      "subtitle": "Choose how to notify your  contact points when an alert instance fires",
-      "title": "Contact points"
+      "subtitle": "Изберете как да уведомите потребители",
+      "title": "Потребители за алармиране"
     },
     "alerting-silences": {
-      "subtitle": "Stop notifications from one or more alerting rules",
-      "title": "Silences"
+      "subtitle": "Спри нотификации от едно или повече условия за алармиране",
+      "title": "Тих режим"
     },
     "alerts-and-incidents": {
-      "subtitle": "Alerting and incident management apps",
-      "title": "Alerts & incidents"
+      "subtitle": "Приложения за предупреждение и управление на инциденти",
+      "title": "Аларми и инциденти"
     },
     "api-keys": {
       "subtitle": "Manage and create API keys that are used to interact with Grafana HTTP APIs",
@@ -177,404 +177,404 @@
     },
     "apps": {
       "subtitle": "App plugins that extend the Grafana experience",
-      "title": "Apps"
+      "title": "Приложения"
     },
     "config": {
-      "title": "Administration",
-      "titleBeforeTopnav": "Configuration"
+      "title": "Администрация",
+      "titleBeforeTopnav": "Конфигурация"
     },
     "correlations": {
-      "subtitle": "Add and configure correlations",
-      "title": "Correlations"
+      "subtitle": "Добавете и конфигурирайте корелации",
+      "title": "Корелации"
     },
     "create": {
-      "title": "Create"
+      "title": "Създай"
     },
     "create-alert": {
-      "title": "Create alert rule"
+      "title": "Създайте условия за аларма"
     },
     "create-dashboard": {
-      "title": "дашборд"
+      "title": "Табло"
     },
     "create-folder": {
-      "title": "Folder"
+      "title": "папка"
     },
     "create-import": {
-      "title": "Import"
+      "title": "Импорт"
     },
     "dashboards": {
-      "subtitle": "Create and manage dashboards to visualize your data",
-      "title": "дашбордs"
+      "subtitle": "Създавайте и управлявайте табла, за да визуализирате вашите данни",
+      "title": "Табла"
     },
     "datasources": {
-      "subtitle": "Add and configure data sources",
-      "title": "Data sources"
+      "subtitle": "Добавете и конфигурирайте източници на данни",
+      "title": "Източници на данни"
     },
     "explore": {
-      "title": "Explore"
+      "title": "Разгледай"
     },
     "global-orgs": {
       "subtitle": "Isolated instances of Grafana running on the same server",
-      "title": "Organizations"
+      "title": "Организация"
     },
     "global-users": {
-      "subtitle": "Manage users in Grafana",
-      "title": "Users",
-      "titleBeforeTopnav": "Users"
+      "subtitle": "Управлявайте потребители в платформата",
+      "title": "Потребители",
+      "titleBeforeTopnav": "Потребители"
     },
     "help": {
-      "title": "Help"
+      "title": "Помощ"
     },
-    "help/community": "Community",
-    "help/documentation": "Documentation",
-    "help/keyboard-shortcuts": "Keyboard shortcuts",
-    "help/support": "Support",
+    "help/community": "Общност",
+    "help/documentation": "Документация",
+    "help/keyboard-shortcuts": "Комбинации от клавиши",
+    "help/support": "Поддръжка",
     "home": {
-      "title": "Home"
+      "title": "Начало"
     },
     "library-panels": {
-      "subtitle": "Reusable panels that can be added to multiple dashboards",
-      "title": "Library panels"
+      "subtitle": "Панели, които могат да се добавят към повече от едно табло",
+      "title": "Панели"
     },
     "live": {
-      "title": "Event streaming"
+      "title": "Стрийминг на събития"
     },
     "live-cloud": {
-      "title": "Cloud"
+      "title": "Облак"
     },
     "live-pipeline": {
-      "title": "Pipeline"
+      "title": "Тръбопровод"
     },
     "live-status": {
-      "title": "Status"
+      "title": "Статус"
     },
     "manage-dashboards": {
-      "title": "Browse"
+      "title": "Прегледай"
     },
     "monitoring": {
-      "subtitle": "Monitoring and infrastructure apps",
-      "title": "Monitoring"
+      "subtitle": "Приложения за наблюдение и инфраструктура",
+      "title": "Наблюдение"
     },
     "new": {
-      "title": "New"
+      "title": "Ново"
     },
     "new-dashboard": {
-      "title": "New dashboard"
+      "title": "Ново табло"
     },
     "new-folder": {
-      "title": "New folder"
+      "title": "Нова папка"
     },
     "org-settings": {
-      "subtitle": "Manage preferences across an organization",
-      "title": "Default preferences",
-      "titleBeforeTopnav": "Preferences"
+      "subtitle": "Управление на предпочитанията в организацията",
+      "title": "Предпочитания по подразбиране",
+      "titleBeforeTopnav": "Предпочитания"
     },
     "playlists": {
-      "subtitle": "Groups of dashboards that are displayed in a sequence",
-      "title": "Playlists"
+      "subtitle": "Групи от табла, които се показват в последователност",
+      "title": "Плейлисти"
     },
     "plugins": {
       "subtitle": "Extend the Grafana experience with plugins",
       "title": "Plugins"
     },
     "profile/notifications": {
-      "title": "Notification history"
+      "title": "История на нотификации"
     },
     "profile/password": {
-      "title": "Change password"
+      "title": "Промени парола"
     },
     "profile/settings": {
-      "title": "Profile"
+      "title": "Профил"
     },
-    "profile/switch-org": "Switch organization",
+    "profile/switch-org": "Смени организация",
     "scenes": {
-      "title": "Scenes"
+      "title": "Сцени"
     },
     "search": {
-      "placeholder": "Search Grafana",
-      "placeholderCommandPalette": "Search or jump to..."
+      "placeholder": "Търси",
+      "placeholderCommandPalette": "Търси..."
     },
     "search-dashboards": {
-      "title": "Search dashboards"
+      "title": "Търси в табла"
     },
     "server-settings": {
-      "subtitle": "View the settings defined in your Grafana config",
-      "title": "Settings"
+      "subtitle": "Вижте настройките, дефинирани във вашата конфигурация на платформата",
+      "title": "Настройки"
     },
     "service-accounts": {
-      "subtitle": "Use service accounts to run automated workloads in Grafana",
-      "title": "Service accounts"
+      "subtitle": "Използвайте акаунти за услуги, за да изпълнявате автоматизирани работни натоварвания в платформата",
+      "title": "Обслужващи потребители"
     },
-    "sign-in": "Sign in",
+    "sign-in": "Вход",
     "sign-out": {
-      "title": "Sign out"
+      "title": "Изход"
     },
     "snapshots": {
-      "subtitle": "Interactive, publically available, point-in-time representations of dashboards",
-      "title": "Snapshots"
+      "subtitle": "Интерактивни, публично достъпни представяния на таблата в даден момент",
+      "title": "Моментни снимки"
     },
     "starred": {
-      "title": "Starred"
+      "title": "Любими"
     },
     "starred-empty": {
-      "title": "Your starred dashboards will appear here"
+      "title": "Вашите любими табла ще се визуализират тук"
     },
     "storage": {
-      "subtitle": "Manage file storage",
-      "title": "Storage"
+      "subtitle": "Управление на съхранението на файлове",
+      "title": "Съхранение"
     },
     "support-bundles": {
-      "subtitle": "Download support bundles",
-      "title": "Support bundles"
+      "subtitle": "Изтеглете пакети за поддръжка",
+      "title": "Поддържащи пакети"
     },
     "teams": {
-      "subtitle": "Groups of users that have common dashboard and permission needs",
-      "title": "Teams"
+      "subtitle": "Групи от потребители, които имат общи табла и достъп",
+      "title": "Екипи"
     },
     "upgrading": {
-      "title": "Stats and license"
+      "title": "Статистика и лиценз"
     },
     "users": {
-      "subtitle": "Invite and assign roles to users",
-      "title": "Users"
+      "subtitle": "Поканете и поставете роли на потребителите",
+      "title": "Потребители"
     }
   },
   "navigation": {
     "kiosk": {
-      "tv-alert": "Press ESC to exit kiosk mode"
+      "tv-alert": "Натиснете ESC, за да излезете от режим павилион"
     }
   },
   "news": {
-    "title": "Latest from the blog"
+    "title": "Последно публикувано в блога"
   },
   "notifications": {
-    "starred-dashboard": "дашборд starred",
-    "unstarred-dashboard": "дашборд unstarred"
+    "starred-dashboard": "Любимо табло",
+    "unstarred-dashboard": "Таблото е премахнато от Любими"
   },
   "panel": {
     "header-menu": {
-      "copy": "Copy",
-      "create-library-panel": "Create library panel",
-      "duplicate": "Duplicate",
-      "edit": "Edit",
-      "explore": "Explore",
-      "get-help": "Get help",
-      "hide-legend": "Hide legend",
-      "inspect": "Inspect",
-      "inspect-data": "Data",
-      "inspect-json": "Panel JSON",
-      "more": "More...",
-      "query": "Query",
-      "remove": "Remove",
-      "share": "Share",
-      "show-legend": "Show legend",
-      "unlink-library-panel": "Unlink library panel",
-      "view": "View"
+      "copy": "Копирай",
+      "create-library-panel": "Съзадай панел",
+      "duplicate": "Дубликирай",
+      "edit": "Редактирай",
+      "explore": "Разгледай",
+      "get-help": "Помощ",
+      "hide-legend": "Скрий легенда",
+      "inspect": "Инспектирай",
+      "inspect-data": "Данни",
+      "inspect-json": "Панел JSON",
+      "more": "Още...",
+      "query": "Запитване",
+      "remove": "Премахване",
+      "share": "Сподели",
+      "show-legend": "Показване на легенда",
+      "unlink-library-panel": "Прекратете връзката с панела",
+      "view": "Виж"
     }
   },
   "refresh-picker": {
     "aria-label": {
-      "choose-interval": "Auto refresh turned off. Choose refresh time interval",
-      "duration-selected": "Choose refresh time interval with current interval {{durationAriaLabel}} selected"
+      "choose-interval": "Автоматичното опресняване на данни е изключено. Изберете интервал от време за опресняване на данните.",
+      "duration-selected": "Изберете интервал от време за опресняване с избран текущия интервал {{durationAriaLabel}}"
     },
     "live-option": {
-      "aria-label": "Turn on live streaming",
-      "label": "Live"
+      "aria-label": "Включете предаването на живо",
+      "label": "На живо"
     },
     "off-option": {
-      "aria-label": "Turn off auto refresh",
-      "label": "Off"
+      "aria-label": "Изключете автоматичното опресняване",
+      "label": "Изключено"
     },
     "select-button": {
-      "auto-refresh": "Set auto refresh interval"
+      "auto-refresh": "Задайте интервал за автоматично опресняване"
     }
   },
   "search": {
     "dashboard-actions": {
-      "import": "Import",
-      "new": "New",
-      "new-dashboard": "New дашборд",
-      "new-folder": "New Folder"
+      "import": "Импорт",
+      "new": "Нов",
+      "new-dashboard": "Ново табло",
+      "new-folder": "Нова папка"
     }
   },
   "share-modal": {
     "dashboard": {
-      "title": "Share"
+      "title": "Сподели"
     },
     "embed": {
-      "copy": "Copy to clipboard",
+      "copy": "Копирай в клипборда",
       "html": "Embed HTML",
-      "html-description": "The HTML code below can be pasted and included in another web page. Unless anonymous access is enabled, the user viewing that page need to be signed into Grafana for the graph to load.",
-      "info": "Generate HTML for embedding an iframe with this panel.",
-      "time-range": "Current time range",
-      "time-range-description": "Transforms the current relative time range to an absolute time range"
+      "html-description": "HTML кодът по-долу може да бъде поставен и включен в друга уеб страница. Освен ако не е активиран анонимен достъп, потребителят, който преглежда тази страница, трябва да влезе в платформата, за да се зареди графиката.",
+      "info": "Генерирайте HTML код за вграждане на iframe с този панел.",
+      "time-range": "Текущ часови диапазон",
+      "time-range-description": "Преобразува текущия относителен времеви диапазон в абсолютен времеви диапазон"
     },
     "export": {
-      "cancel-button": "Cancel",
-      "info-text": "Export this dashboard.",
-      "save-button": "Save to file",
-      "share-default-label": "Export with default values removed",
-      "share-externally-label": "Export for sharing externally",
-      "view-button": "View JSON"
+      "cancel-button": "Изход",
+      "info-text": "Експортирайте това табло.",
+      "save-button": "Запазване във файл",
+      "share-default-label": "Експортиране на файл (без да са включени стойностите по подразбиране)",
+      "share-externally-label": "Експортиране за външно споделяне",
+      "view-button": "Виж JSON код"
     },
     "library": {
-      "info": "Create library panel."
+      "info": "Създай панел."
     },
     "link": {
-      "copy-link-button": "Copy",
-      "info-text": "Create a direct link to this dashboard or panel, customized with the options below.",
-      "link-url": "Link URL",
-      "render-alert": "Image renderer plugin not installed",
-      "render-instructions": "To render a panel image, you must install the&nbsp;<1>Grafana image renderer plugin</1>. Please contact your Grafana administrator to install the plugin.",
-      "rendered-image": "Direct link rendered image",
-      "save-alert": "дашборд is not saved",
-      "save-dashboard": "To render a panel image, you must save the dashboard first.",
-      "shorten-url": "Shorten URL",
-      "time-range-description": "Transforms the current relative time range to an absolute time range",
-      "time-range-label": "Lock time range"
+      "copy-link-button": "Копирай",
+      "info-text": "Създайте директна връзка към това табло или панел, персонализирани с опциите по-долу.",
+      "link-url": "Линк URL",
+      "render-alert": "Рlugin-а за изображения не е инсталиран",
+      "render-instructions": "За да се изобрази визуализация, трябва да инсталирате приставката: &nbsp;<1>Grafana image renderer plugin</1>. Моля, свържете се с вашия администратор на платформата.",
+      "rendered-image": "Изобразена е визуализация с директна връзка",
+      "save-alert": "Таблото не е запаметено",
+      "save-dashboard": "За да изобразите визуализация на панел, първо трябва да запазите таблото.",
+      "shorten-url": "По-кратък URL",
+      "time-range-description": "Преобразува текущия относителен времеви диапазон в абсолютен времеви диапазон",
+      "time-range-label": "Заключи времевия диапазон"
     },
     "panel": {
-      "title": "Share Panel"
+      "title": "Сподели панел"
     },
     "snapshot": {
-      "cancel-button": "Cancel",
-      "copy-link-button": "Copy",
-      "delete-button": "Delete snapshot.",
-      "deleted-message": "The snapshot has been deleted. If you have already accessed it once, then it might take up to an hour before before it is removed from browser caches or CDN caches.",
-      "expire": "Expire",
-      "expire-day": "1 Day",
-      "expire-hour": "1 Hour",
-      "expire-never": "Never",
-      "expire-week": "7 Days",
-      "info-text-1": "A snapshot is an instant way to share an interactive dashboard publicly. When created, we strip sensitive data like queries (metric, template, and annotation) and panel links, leaving only the visible metric data and series names embedded in your dashboard.",
-      "info-text-2": "Keep in mind, your snapshot <1>can be viewed by anyone</1> that has the link and can access the URL. Share wisely.",
-      "local-button": "Local Snapshot",
-      "mistake-message": "Did you make a mistake? ",
-      "name": "Snapshot name",
-      "timeout": "Timeout (seconds)",
-      "timeout-description": "You might need to configure the timeout value if it takes a long time to collect your dashboard metrics.",
-      "url-label": "Snapshot URL"
+      "cancel-button": "Отказ",
+      "copy-link-button": "Копирай",
+      "delete-button": "Изтриване на моментна снимка.",
+      "deleted-message": "Моментната снимка е изтрита. Може да отнеме до един час, преди да бъде премахната от кешовете на браузъра или CDN кешовете.",
+      "expire": "Изтича",
+      "expire-day": "1 Ден",
+      "expire-hour": "1 Час",
+      "expire-never": "Никога",
+      "expire-week": "7 Дни",
+      "info-text-1": "Моментната снимка е лесен начин за публично споделяне на табло. Когато направите моментни снимки, автоматично се премахват чувствителните данни като заявки (метрика, шаблон и анотация) и връзки към панели, оставяйки само видимите данни за показатели и имена на серии, вградени във вашето табло.",
+      "info-text-2": "Имайте предвид, че вашата моментна снимка може да бъде видяна от всеки, който има връзката и има достъп до URL адреса. Споделяйте внимателно.",
+      "local-button": "Локална моментна снимка",
+      "mistake-message": "Сгрешихте ли?",
+      "name": "Име на моментна снимка",
+      "timeout": "Време за изчакване (секунди)",
+      "timeout-description": "Може да се наложи да конфигурирате стойността на времето за изчакване, ако събирането на показателите на таблото ви отнема повече време.",
+      "url-label": "URL към моментна снимка"
     },
     "tab-title": {
-      "embed": "Embed",
-      "export": "Export",
-      "library-panel": "Library panel",
-      "link": "Link",
-      "snapshot": "Snapshot"
+      "embed": "Вграден",
+      "export": "Експорт",
+      "library-panel": "Панел",
+      "link": "Връзка",
+      "snapshot": "Моментална снимка"
     },
     "theme-picker": {
-      "current": "Current",
-      "dark": "Dark",
-      "field-name": "Theme",
-      "light": "Light"
+      "current": "Текущ",
+      "dark": "Тъмен",
+      "field-name": "Тема",
+      "light": "Светъл"
     },
     "view-json": {
-      "copy-button": "Copy to Clipboard"
+      "copy-button": "Копиране в клипборда"
     }
   },
   "shared-dashboard": {
     "fields": {
-      "timezone-label": "Timezone"
+      "timezone-label": "Часова зона"
     }
   },
   "shared-preferences": {
     "fields": {
-      "home-dashboard-label": "Home дашборд",
-      "home-dashboard-placeholder": "Default dashboard",
-      "locale-label": "Language",
-      "locale-placeholder": "Choose language",
-      "theme-label": "UI Theme",
-      "week-start-label": "Week start"
+      "home-dashboard-label": "Табло начало",
+      "home-dashboard-placeholder": "Стандартно Табло",
+      "locale-label": "Език",
+      "locale-placeholder": "Избери език",
+      "theme-label": "Изглед",
+      "week-start-label": "Седмицата започва"
     },
     "theme": {
-      "dark-label": "Dark",
-      "default-label": "Default",
-      "light-label": "Light",
-      "system-label": "System"
+      "dark-label": "Тъмна",
+      "default-label": "Стандартна",
+      "light-label": "Светла",
+      "system-label": "Система"
     },
-    "title": "Preferences"
+    "title": "Предпочитания"
   },
   "time-picker": {
     "absolute": {
-      "recent-title": "Recently used absolute ranges",
-      "title": "Absolute time range"
+      "recent-title": "Наскоро използвани абсолютни диапазони",
+      "title": "Абсолютни диапазони"
     },
     "calendar": {
-      "apply-button": "Apply time range",
-      "cancel-button": "Cancel",
-      "select-time": "Select a time range"
+      "apply-button": "Приложи времения диапазон",
+      "cancel-button": "Отказ",
+      "select-time": "Избери времеви диазпазон"
     },
     "content": {
       "empty-recent-list": "<0><0>It looks like you haven&apos;t used this time picker before. As soon as you enter some time intervals, recently used intervals will appear here.</0></0><1><0>Read the documentation</0><1> to find out more about how to enter custom time ranges.</1></1>",
-      "filter-placeholder": "Search quick ranges"
+      "filter-placeholder": "Търси бързи диазпазони"
     },
     "footer": {
-      "change-settings-button": "Change time settings",
-      "fiscal-year-option": "Fiscal year",
-      "fiscal-year-start": "Fiscal year start month",
-      "time-zone-option": "Time zone",
-      "time-zone-selection": "Time zone selection"
+      "change-settings-button": "Промяна на настройките за време",
+      "fiscal-year-option": "Фискална година",
+      "fiscal-year-start": "Начален месец на фискалната година",
+      "time-zone-option": "Времева зона",
+      "time-zone-selection": "Селекция на времевия период"
     },
     "range-content": {
-      "apply-button": "Apply time range",
-      "default-error": "Please enter a past date or \"now\"",
-      "fiscal-year": "Fiscal year",
-      "from-input": "From",
-      "range-error": "\"From\" can't be after \"To\"",
-      "to-input": "To"
+      "apply-button": "Приложи избрания времеви диазпазон",
+      "default-error": "Моля въведете предходна дата или \"в момента\"",
+      "fiscal-year": "Фискална година",
+      "from-input": "От",
+      "range-error": "\"От\" не може да бъде дата/час след \"До\"",
+      "to-input": "До"
     },
     "range-picker": {
-      "backwards-time-aria-label": "Move time range backwards",
-      "current-time-selected": "Time range selected: {{currentTimeRange}}",
-      "forwards-time-aria-label": "Move time range forwards",
-      "to": "to",
-      "zoom-out-button": "Zoom out time range",
-      "zoom-out-tooltip": "Time range zoom out <1></1> CTRL+Z"
+      "backwards-time-aria-label": "Преместете времевия диапазон назад",
+      "current-time-selected": "Избраният период от време: {{currentTimeRange}}",
+      "forwards-time-aria-label": "Преместете времевия диапазон напред",
+      "to": "до",
+      "zoom-out-button": "Намаляване на времевия диапазон",
+      "zoom-out-tooltip": "Намаляване на времевия диапазон <1></1> CTRL+Z"
     },
     "time-range": {
-      "aria-role": "Time range selection",
-      "default-title": "Time ranges",
-      "example-title": "Example time ranges",
-      "specify": "Specify time range <1></1>"
+      "aria-role": "Селектиран времеви диазпазон",
+      "default-title": "Времеви диазпазони",
+      "example-title": "Примерни времеви диазпазони",
+      "specify": "Специфицирай времевия диазпазон <1></1>"
     },
     "zone": {
-      "select-aria-label": "Time zone picker",
-      "select-search-input": "Type to search (country, city, abbreviation)"
+      "select-aria-label": "Избор на часова зона",
+      "select-search-input": "Търси (страна, град, абревиатура)"
     }
   },
   "user-orgs": {
-    "current-org-button": "Current",
-    "name-column": "Name",
-    "role-column": "Role",
-    "select-org-button": "Select organisation",
-    "title": "Organizations"
+    "current-org-button": "Настоящ",
+    "name-column": "Име",
+    "role-column": "Роля",
+    "select-org-button": "Избери организация",
+    "title": "Организации"
   },
   "user-profile": {
     "fields": {
-      "email-error": "Email is required",
-      "email-label": "Email",
-      "name-error": "Name is required",
-      "name-label": "Name",
-      "username-label": "Username"
+      "email-error": "Нужена е електранна поща",
+      "email-label": "Електранна поща",
+      "name-error": "Нужно е име",
+      "name-label": "Име",
+      "username-label": "Потребителско име"
     }
   },
   "user-session": {
     "browser-column": "Browser & OS",
-    "created-at-column": "Logged on",
+    "created-at-column": "Влязъл в платформата",
     "ip-column": "IP address",
-    "revoke": "Revoke user session",
-    "seen-at-column": "Last seen"
+    "revoke": "Отмяна на потребителска сесия",
+    "seen-at-column": "Последно видян"
   },
   "user-sessions": {
-    "loading": "Loading sessions..."
+    "loading": "Зареждане на сесии..."
   },
   "variable": {
     "picker": {
-      "input": "Enter variable value",
-      "link-all": "All",
-      "option-all": "All",
-      "option-selected-values": "Selected",
-      "option-tooltip": "Clear selections"
+      "input": "Въведете стойност на променлива",
+      "link-all": "Всички",
+      "option-all": "Всички",
+      "option-selected-values": "Избрани",
+      "option-tooltip": "Изтрий избрани"
     }
   }
 }
