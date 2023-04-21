@@ -61,6 +61,16 @@ export const NavBar = React.memo(() => {
     menuOpen
   );
 
+  const logoutItem: NavModelItem = enrichWithInteractionTracking(
+    {
+      id: 'logout',
+      text: 'Смени потребител',
+      url: '/login',
+      icon: 'user-arrows',
+    },
+    menuOpen
+  );
+
   const navTree = cloneDeep(navBarTree).filter((item) => item.hideFromMenu !== true);
 
   const coreItems = navTree
@@ -162,7 +172,7 @@ export const NavBar = React.memo(() => {
             activeItem={activeItem}
             isOpen={menuOpen}
             setMenuAnimationInProgress={setMenuAnimationInProgress}
-            navItems={[homeItem, searchItem, ...coreItems, ...pluginItems, ...configItems]}
+            navItems={[homeItem, searchItem, ...coreItems, ...pluginItems, ...configItems, logoutItem]}
             onClose={() => setMenuOpen(false)}
           />
         </div>
