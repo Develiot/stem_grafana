@@ -30,7 +30,7 @@ export function AppChrome({ children }: Props) {
         {!state.chromeless && (
           <>
             <NavBar />
-            <SearchWrapper />
+            {/* <SearchWrapper /> */}
             <CommandPalette />
           </>
         )}

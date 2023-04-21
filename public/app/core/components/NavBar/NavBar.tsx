@@ -228,6 +228,7 @@ const getStyles = (theme: GrafanaTheme2) => ({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
+    visibility: 'hidden',
 
     [theme.breakpoints.down('md')]: {
       visibility: 'hidden',
