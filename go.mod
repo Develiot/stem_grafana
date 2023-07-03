@@ -122,7 +122,7 @@ require (
 	gonum.org/v1/gonum v0.11.0
 	google.golang.org/api v0.104.0
 	google.golang.org/grpc v1.51.0
-	google.golang.org/protobuf v1.28.1
+	google.golang.org/protobuf v1.31.0
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/ini.v1 v1.67.0
 	gopkg.in/ldap.v3 v3.1.0
@@ -245,7 +245,7 @@ require (
 	github.com/armon/go-radix v1.0.0
 	github.com/blugelabs/bluge v0.1.9
 	github.com/blugelabs/bluge_segment_api v0.2.0
-	github.com/bufbuild/connect-go v1.4.1
+	github.com/bufbuild/connect-go v1.9.0
 	github.com/dlmiddlecote/sqlstats v1.0.2
 	github.com/drone/drone-cli v1.6.1
 	github.com/getkin/kin-openapi v0.107.0
@@ -267,8 +267,8 @@ require (
 )
 
 require (
-	buf.build/gen/go/parca-dev/parca/bufbuild/connect-go v1.4.1-20221222094228-8b1d3d0f62e6.1
-	buf.build/gen/go/parca-dev/parca/protocolbuffers/go v1.28.1-20221222094228-8b1d3d0f62e6.4
+	buf.build/gen/go/parca-dev/parca/bufbuild/connect-go v1.9.0-20230622104858-afd96944bcca.1
+	buf.build/gen/go/parca-dev/parca/protocolbuffers/go v1.31.0-20230622104858-afd96944bcca.1
 	github.com/Masterminds/semver/v3 v3.1.1
 	github.com/dave/dst v0.27.2
 	github.com/grafana/thema v0.0.0-20230122235053-b4b6714dd1c9
