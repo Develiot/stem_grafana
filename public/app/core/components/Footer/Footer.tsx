@@ -2,8 +2,8 @@ import React from 'react';
 
 import { LinkTarget } from '@grafana/data';
 import { config } from '@grafana/runtime';
-import { IconName } from '@grafana/ui';
-import { t } from 'app/core/internationalization';
+import { Icon, IconName } from '@grafana/ui';
+// import { t } from 'app/core/internationalization';
 
 export interface FooterLink {
   target: LinkTarget;
@@ -15,26 +15,33 @@ export interface FooterLink {
 
 export let getFooterLinks = (): FooterLink[] => {
   return [
-    {
-      target: '_blank',
-      id: 'documentation',
-      text: t('nav.help/documentation', 'Documentation'),
-      icon: 'document-info',
-      url: 'https://grafana.com/docs/grafana/latest/?utm_source=grafana_footer',
-    },
-    {
-      target: '_blank',
-      id: 'support',
-      text: t('nav.help/support', 'Support'),
-      icon: 'question-circle',
-      url: 'https://grafana.com/products/enterprise/?utm_source=grafana_footer',
-    },
+    // {
+    //   target: '_blank',
+    //   id: 'documentation',
+    //   text: t('nav.help/documentation', 'Documentation'),
+    //   icon: 'document-info',
+    //   url: 'https://grafana.com/docs/grafana/latest/?utm_source=grafana_footer',
+    // },
+    // {
+    //   target: '_blank',
+    //   id: 'support',
+    //   text: t('nav.help/support', 'Support'),
+    //   icon: 'question-circle',
+    //   url: 'https://grafana.com/products/enterprise/?utm_source=grafana_footer',
+    // },
     {
       target: '_blank',
       id: 'community',
-      text: t('nav.help/community', 'Community'),
-      icon: 'comments-alt',
-      url: 'https://community.grafana.com/?utm_source=grafana_footer',
+      text: 'Open Source (AGPLv3 license)',
+      icon: 'github',
+      url: 'https://github.com/Develiot/stem_grafana',
+    },
+    {
+      target: '_blank',
+      id: 'tbs',
+      text: 'Telelink Business Services EAD',
+      icon: 'tbs-logo',
+      url: 'https://tbs.tech',
     },
   ];
 };
@@ -100,29 +107,37 @@ export interface Props {
 }
 
 export const Footer = React.memo(({ customLinks }: Props) => {
-  // const links = (customLinks || getFooterLinks()).concat(getVersionLinks());
+  const links = customLinks || getFooterLinks();
 
   return (
     <footer className="footer">
-      <div className="text-center"></div>
+      <div className="text-center">
+        <ul>
+          {links.map((link) => (
+            <li key={link.text}>
+              <FooterItem item={link} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </footer>
   );
 });
 
 Footer.displayName = 'Footer';
 
-// function FooterItem({ item }: { item: FooterLink }) {
-//   const content = item.url ? (
-//     <a href={item.url} target={item.target} rel="noopener noreferrer" id={item.id}>
-//       {item.text}
-//     </a>
-//   ) : (
-//     item.text
-//   );
+function FooterItem({ item }: { item: FooterLink }) {
+  const content = item.url ? (
+    <a href={item.url} target={item.target} rel="noopener noreferrer" id={item.id}>
+      {item.text}
+    </a>
+  ) : (
+    item.text
+  );
 
-//   return (
-//     <>
-//       {item.icon && <Icon name={item.icon} />} {content}
-//     </>
-//   );
-// }
+  return (
+    <>
+      {item.icon && <Icon name={item.icon} />} {content}
+    </>
+  );
+}

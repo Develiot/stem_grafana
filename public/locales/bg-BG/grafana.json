@@ -94,7 +94,7 @@
       "save": "Запази табло",
       "settings": "Настройки на табло",
       "share": "Споредли табло или панел",
-      "tv-button": "Режим на цикличен изглед",
+      "tv-button": "Режим на цял екран",
       "unmark-favorite": "Махни от любими"
     }
   },
@@ -129,7 +129,7 @@
   "nav": {
     "admin": {
       "subtitle": "Управлявайте настройките за целия сървър и достъпа до ресурси като организации, потребители и лицензи",
-      "title": "Админ на сървара"
+      "title": "Администратор"
     },
     "alerting": {
       "subtitle": "Научете за проблемите във вашите системи веднага след възникването им",
@@ -505,7 +505,7 @@
       "select-time": "Избери времеви диазпазон"
     },
     "content": {
-      "empty-recent-list": "<0><0>It looks like you haven&apos;t used this time picker before. As soon as you enter some time intervals, recently used intervals will appear here.</0></0><1><0>Read the documentation</0><1> to find out more about how to enter custom time ranges.</1></1>",
+      "empty-recent-list": "<0><0>Изглежда, че не сте използвали менюто за избиране на часови диапазон преди. Когато въведете интервали, последно използваните ще се появят тук.</0></0><1><0>Прочетете документацията</0><1>, за да научите как да въвеждате часови диапазони.</1></1>",
       "filter-placeholder": "Търси бързи диазпазони"
     },
     "footer": {

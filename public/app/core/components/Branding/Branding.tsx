@@ -60,7 +60,7 @@ export class Branding {
   static MenuLogo = MenuLogo;
   static LoginBoxBackground = LoginBoxBackground;
   static AppTitle = 'STEM';
-  static LoginTitle = 'Welcome to STEM';
+  static LoginTitle = 'Добре дошли в STEM';
   static GetLoginSubTitle = (): null | string => {
     return null;
   };
