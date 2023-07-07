@@ -5,10 +5,10 @@ import { getTemplateSrv } from '@grafana/runtime';
 import { Drawer, Tab, TabsBar } from '@grafana/ui';
 import { t, Trans } from 'app/core/internationalization';
 import { InspectDataTab } from 'app/features/inspector/InspectDataTab';
-import { InspectErrorTab } from 'app/features/inspector/InspectErrorTab';
-import { InspectJSONTab } from 'app/features/inspector/InspectJSONTab';
-import { InspectMetadataTab } from 'app/features/inspector/InspectMetadataTab';
-import { InspectStatsTab } from 'app/features/inspector/InspectStatsTab';
+// import { InspectErrorTab } from 'app/features/inspector/InspectErrorTab';
+// import { InspectJSONTab } from 'app/features/inspector/InspectJSONTab';
+// import { InspectMetadataTab } from 'app/features/inspector/InspectMetadataTab';
+// import { InspectStatsTab } from 'app/features/inspector/InspectStatsTab';
 import { QueryInspector } from 'app/features/inspector/QueryInspector';
 import { InspectTab } from 'app/features/inspector/types';
 
@@ -50,7 +50,7 @@ export const InspectContent = ({
     return null;
   }
 
-  const error = data?.error;
+  // const error = data?.error;
 
   // Validate that the active tab is actually valid and allowed
   let activeTab = currentTab;
@@ -95,15 +95,15 @@ export const InspectContent = ({
           app={CoreApp.Dashboard}
         />
       )}
-      {data && activeTab === InspectTab.Meta && (
+      {/* {data && activeTab === InspectTab.Meta && (
         <InspectMetadataTab data={data} metadataDatasource={metadataDatasource} />
-      )}
+      )} */}
 
-      {activeTab === InspectTab.JSON && (
+      {/* {activeTab === InspectTab.JSON && (
         <InspectJSONTab panel={panel} dashboard={dashboard} data={data} onClose={onClose} />
       )}
       {activeTab === InspectTab.Error && <InspectErrorTab error={error} />}
-      {data && activeTab === InspectTab.Stats && <InspectStatsTab data={data} timeZone={dashboard.getTimezone()} />}
+      {data && activeTab === InspectTab.Stats && <InspectStatsTab data={data} timeZone={dashboard.getTimezone()} />} */}
       {data && activeTab === InspectTab.Query && (
         <QueryInspector panel={panel} data={data.series} onRefreshQuery={() => panel.refresh()} />
       )}
