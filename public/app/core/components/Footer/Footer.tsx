@@ -40,7 +40,6 @@ export let getFooterLinks = (): FooterLink[] => {
       target: '_blank',
       id: 'tbs',
       text: 'Telelink Business Services EAD',
-      icon: 'tbs-logo',
       url: 'https://tbs.tech',
     },
   ];

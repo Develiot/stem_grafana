@@ -205,7 +205,6 @@ export const availableIconsIndex = {
   'wrap-text': true,
   rss: true,
   x: true,
-  'tbs-logo': true,
 };
 
 export type IconName = keyof typeof availableIconsIndex;
