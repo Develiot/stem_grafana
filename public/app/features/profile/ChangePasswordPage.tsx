@@ -32,12 +32,12 @@ export function ChangePasswordPage({ loadUser, isUpdating, user, changePassword 
   useMount(() => loadUser());
 
   return (
-    <Page navId="profile/password">
+    <Page navId="profile">
       <Page.Contents isLoading={!Boolean(user)}>
         {user ? (
           <>
             <Page.OldNavOnly>
-              <h3 className="page-sub-heading">Change Your Password</h3>
+              <h3 className="page-sub-heading">Смяна на парола</h3>
             </Page.OldNavOnly>
             <ChangePasswordForm user={user} onChangePassword={changePassword} isSaving={isUpdating} />
           </>

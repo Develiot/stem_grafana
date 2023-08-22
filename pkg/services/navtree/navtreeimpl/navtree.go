@@ -89,7 +89,7 @@ func (s *ServiceImpl) GetNavTree(c *contextmodel.ReqContext, hasEditPerm bool, p
 			Id:             "starred",
 			Icon:           "star",
 			SortWeight:     navtree.WeightSavedItems,
-			Section:        navtree.NavSectionCore,
+			Section:        navtree.NavSectionConfig,
 			Children:       starredItemsLinks,
 			EmptyMessageId: "starred-empty",
 		})
@@ -123,7 +123,7 @@ func (s *ServiceImpl) GetNavTree(c *contextmodel.ReqContext, hasEditPerm bool, p
 			SubTitle:   "Explore your data",
 			Icon:       "compass",
 			SortWeight: navtree.WeightExplore,
-			Section:    navtree.NavSectionCore,
+			Section:    navtree.NavSectionConfig,
 			Url:        s.cfg.AppSubURL + "/explore",
 		})
 	}
@@ -135,7 +135,7 @@ func (s *ServiceImpl) GetNavTree(c *contextmodel.ReqContext, hasEditPerm bool, p
 			SubTitle:   "Store, import, export and manage your team queries in an easy way.",
 			Icon:       "file-search-alt",
 			SortWeight: navtree.WeightQueryLibrary,
-			Section:    navtree.NavSectionCore,
+			Section:    navtree.NavSectionConfig,
 			Url:        s.cfg.AppSubURL + "/query-library",
 		})
 	}
@@ -322,10 +322,10 @@ func (s *ServiceImpl) getProfileNode(c *contextmodel.ReqContext) *navtree.NavLin
 		Id:         "profile",
 		Img:        gravatarURL,
 		Url:        s.cfg.AppSubURL + "/profile",
-		Section:    navtree.NavSectionConfig,
+		Section:    navtree.NavSectionCore,
 		SortWeight: navtree.WeightProfile,
-		Children:   children,
-		RoundIcon:  true,
+		// Children:   children,
+		RoundIcon: true,
 	}
 }
 

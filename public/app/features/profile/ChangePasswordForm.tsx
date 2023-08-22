@@ -36,44 +36,48 @@ export const ChangePasswordForm: FC<Props> = ({ user, onChangePassword, isSaving
         {({ register, errors, getValues }) => {
           return (
             <>
-              <Field label="Old password" invalid={!!errors.oldPassword} error={errors?.oldPassword?.message}>
+              <Field label="Текуща парола" invalid={!!errors.oldPassword} error={errors?.oldPassword?.message}>
                 <PasswordField
                   id="current-password"
                   autoComplete="current-password"
-                  {...register('oldPassword', { required: 'Old password is required' })}
+                  {...register('oldPassword', { required: 'Необходима е текуща парола' })}
                 />
               </Field>
 
-              <Field label="New password" invalid={!!errors.newPassword} error={errors?.newPassword?.message}>
+              <Field label="Нова парола" invalid={!!errors.newPassword} error={errors?.newPassword?.message}>
                 <PasswordField
                   id="new-password"
                   autoComplete="new-password"
                   {...register('newPassword', {
-                    required: 'New password is required',
+                    required: 'Необходима е нова парола',
                     validate: {
-                      confirm: (v) => v === getValues().confirmNew || 'Passwords must match',
-                      old: (v) => v !== getValues().oldPassword || `New password can't be the same as the old one.`,
+                      confirm: (v) => v === getValues().confirmNew || 'Паролите трябва да съвпадат',
+                      old: (v) => v !== getValues().oldPassword || `Новата парола не може да е същата като старата`,
                     },
                   })}
                 />
               </Field>
 
-              <Field label="Confirm password" invalid={!!errors.confirmNew} error={errors?.confirmNew?.message}>
+              <Field
+                label="Въведете отново новата парола"
+                invalid={!!errors.confirmNew}
+                error={errors?.confirmNew?.message}
+              >
                 <PasswordField
                   id="confirm-new-password"
                   autoComplete="new-password"
                   {...register('confirmNew', {
-                    required: 'New password confirmation is required',
-                    validate: (v) => v === getValues().newPassword || 'Passwords must match',
+                    required: 'Необходимо е повторно въвеждане на новата парола',
+                    validate: (v) => v === getValues().newPassword || 'Паролите трябва да съвпадат',
                   })}
                 />
               </Field>
               <HorizontalGroup>
                 <Button variant="primary" disabled={isSaving} type="submit">
-                  Change Password
+                  Смени парола
                 </Button>
                 <LinkButton variant="secondary" href={`${config.appSubUrl}/profile`} fill="outline">
-                  Cancel
+                  Откажи
                 </LinkButton>
               </HorizontalGroup>
             </>
