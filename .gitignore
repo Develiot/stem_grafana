@@ -1,4 +1,5 @@
 stem*.tar
+grafana.db
 
 node_modules
 npm-debug.log
