@@ -61,15 +61,15 @@ export const NavBar = React.memo(() => {
     menuOpen
   );
 
-  const passwordItem: NavModelItem = enrichWithInteractionTracking(
-    {
-      id: 'password-change',
-      text: 'Смени парола',
-      url: '/profile/password',
-      icon: 'lock',
-    },
-    menuOpen
-  );
+  // const passwordItem: NavModelItem = enrichWithInteractionTracking(
+  //   {
+  //     id: 'password-change',
+  //     text: 'Смени парола',
+  //     url: '/profile/password',
+  //     icon: 'lock',
+  //   },
+  //   menuOpen
+  // );
 
   const logoutItem: NavModelItem = enrichWithInteractionTracking(
     {
@@ -183,7 +183,7 @@ export const NavBar = React.memo(() => {
             isOpen={menuOpen}
             setMenuAnimationInProgress={setMenuAnimationInProgress}
             // navItems={[homeItem, searchItem, ...coreItems, ...pluginItems, ...configItems, logoutItem]}
-            navItems={[homeItem, ...pluginItems, ...configItems, passwordItem, logoutItem]}
+            navItems={[homeItem, ...pluginItems, ...configItems, logoutItem]}
             onClose={() => setMenuOpen(false)}
           />
         </div>

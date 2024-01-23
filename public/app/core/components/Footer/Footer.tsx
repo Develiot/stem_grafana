@@ -32,7 +32,7 @@ export let getFooterLinks = (): FooterLink[] => {
     {
       target: '_blank',
       id: 'community',
-      text: 'stem-v0.4.0 (AGPLv3 license)',
+      text: 'stem-v0.4.1 (AGPLv3 license)',
       icon: 'github',
       url: 'https://github.com/Develiot/stem_grafana',
     },
