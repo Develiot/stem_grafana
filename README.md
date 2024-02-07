@@ -2,7 +2,7 @@
 
 Open-source platform for monitoring and observability of STEM kits used for education in schools, based on Grafana.
 
-[![License](https://img.shields.io/github/license/develiot/stem_grafana)](LICENSE)
+[![License](https://img.shields.io/github/license/Develiot/stem_grafana)](LICENSE)
 
 The platform allows you to query, visualize, and understand your metrics sent from the STEM education kits. Explore the data that is all around you.
 
