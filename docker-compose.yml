@@ -1,7 +1,7 @@
 version: '2'
 services:
   grafana:
-    image: "stem-v0.4.2"
+    image: "stem-v0.5.0"
     ports:
       - "3000:3000"
     environment:

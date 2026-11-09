@@ -32,15 +32,15 @@ export let getFooterLinks = (): FooterLink[] => {
     {
       target: '_blank',
       id: 'community',
-      text: 'stem-v0.4.2 (AGPLv3 license)',
+      text: 'stem-v0.5.0 (AGPLv3 license)',
       icon: 'github',
       url: 'https://github.com/Develiot/stem_grafana',
     },
     {
       target: '_blank',
-      id: 'tbs',
-      text: 'Telelink Business Services EAD',
-      url: 'https://tbs.tech',
+      id: 'enlayer',
+      text: 'STEM, an Enlayer platform',
+      url: 'https://enlayer.com',
     },
   ];
 };

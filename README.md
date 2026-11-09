@@ -1,4 +1,6 @@
-![STEM](./TBS_Logo_png_Purple.png)
+![Enlayer](./public/img/enlayer/enlayer-deep-green.svg)
+
+**STEM, an Enlayer platform**
 
 Open-source platform for monitoring and observability of STEM kits used for education in schools, based on Grafana.
 
@@ -31,6 +33,11 @@ STEM is a modified version of [Grafana](https://github.com/grafana/grafana) (Gra
 - 2026-11-06, `stem-v0.4.2`: security hardening: current Go toolchain and libraries, Grafana security fixes
   backported, updated browser libraries and base images. See [HARDENING.md](HARDENING.md). Every backported code
   change is marked `STEM security backport` in the source.
+- 2026-11-09, `stem-v0.5.0`: Enlayer rebrand: logo, interface colours (light and dark), footer. See
+  [REBRAND.md](REBRAND.md).
+
+The Enlayer name and logos are trademarks of Enlayer and are not licensed under the AGPL. Grafana is a trademark of
+Grafana Labs.
 
 ## License
 

@@ -82,61 +82,99 @@ export interface ThemeColors extends ThemeColorsBase<ThemeRichColor> {
 /** @internal */
 export type ThemeColorsInput = DeepPartial<ThemeColorsBase<ThemeRichColor>>;
 
+/**
+ * STEM / Enlayer brand colours (Enlayer brand book A.4, A.5 and D.8).
+ * Only UI chrome is branded here. Data/visualization colours (createVisualizationColors.ts)
+ * are intentionally untouched so dashboards render exactly as before.
+ */
+export const enlayer = {
+  deepGreen: '#183A33',
+  editorialGreen: '#0B6B52',
+  graphite: '#262D34',
+  warmIvory: '#F7F5F0',
+  pureWhite: '#FFFFFF',
+  emerald: '#00A76F',
+  terracotta: '#D6653C',
+  statusAmber: '#E3A21A',
+  // Product UI tokens (D.8)
+  brandGreen: '#00805A',
+  platformBlue: '#2F6079',
+  harborBlue: '#7AA5C3',
+  sectionTint: '#F7FAF8',
+  fieldTint: '#F3F7F5',
+  mint: '#E9F5F0',
+  mutedText: '#5A6763',
+  hairline: '#EDF0EF',
+  ashGrey: '#C9D2CE',
+  stoneGrey: '#B3BEB9',
+  chipGoldText: '#7A5C22',
+  chipTerracottaText: '#A33F1E',
+  // Dark theme depth: shades and tints of the brand colours ("depth, not more colours", A.5)
+  deepGreenShade: '#102621', // Deep Green darkened 35%
+  deepGreenTint: '#2A4A43', // Deep Green lightened 8%
+  emeraldTint: '#4CC19A', // Emerald lightened 30%, readable as text on Deep Green
+  terracottaTint: '#E08B6D', // Terracotta lightened 25%
+};
+
 class DarkColors implements ThemeColorsBase<Partial<ThemeRichColor>> {
   mode: ThemeColorsMode = 'dark';
 
-  // Used to get more white opacity colors
-  whiteBase = '204, 204, 220';
+  // Warm Ivory, used for ivory-on-deep-green opacity colours
+  whiteBase = '247, 245, 240';
 
   border = {
-    weak: `rgba(${this.whiteBase}, 0.07)`,
-    medium: `rgba(${this.whiteBase}, 0.15)`,
-    strong: `rgba(${this.whiteBase}, 0.25)`,
+    weak: `rgba(${this.whiteBase}, 0.12)`,
+    medium: `rgba(${this.whiteBase}, 0.2)`,
+    strong: `rgba(${this.whiteBase}, 0.30)`,
   };
 
   text = {
-    primary: `rgb(${this.whiteBase})`,
-    secondary: `rgba(${this.whiteBase}, 0.65)`,
-    disabled: `rgba(${this.whiteBase}, 0.6)`,
-    link: palette.blueDarkText,
+    primary: enlayer.warmIvory,
+    secondary: `rgba(${this.whiteBase}, 0.7)`,
+    disabled: `rgba(${this.whiteBase}, 0.55)`,
+    link: enlayer.emeraldTint,
     maxContrast: palette.white,
   };
 
+  // brandGreen for buttons: white text on Emerald is only 3.1:1, on brandGreen 5:1 (WCAG AA)
   primary = {
-    main: palette.blueDarkMain,
-    text: palette.blueDarkText,
-    border: palette.blueDarkText,
+    main: enlayer.brandGreen,
+    text: enlayer.emeraldTint,
+    border: enlayer.emeraldTint,
   };
 
   secondary = {
-    main: `rgba(${this.whiteBase}, 0.16)`,
-    shade: `rgba(${this.whiteBase}, 0.20)`,
+    main: `rgba(${this.whiteBase}, 0.10)`,
+    shade: `rgba(${this.whiteBase}, 0.14)`,
     text: this.text.primary,
-    contrastText: `rgb(${this.whiteBase})`,
-    border: this.border.strong,
+    contrastText: enlayer.warmIvory,
+    border: `rgba(${this.whiteBase}, 0.08)`,
   };
 
-  info = this.primary;
+  info = {
+    main: enlayer.harborBlue,
+    text: enlayer.harborBlue,
+  };
 
   error = {
-    main: palette.redDarkMain,
-    text: palette.redDarkText,
+    main: enlayer.terracotta,
+    text: enlayer.terracottaTint,
   };
 
   success = {
-    main: palette.greenDarkMain,
-    text: palette.greenDarkText,
+    main: enlayer.emerald,
+    text: enlayer.emeraldTint,
   };
 
   warning = {
-    main: palette.orangeDarkMain,
-    text: palette.orangeDarkText,
+    main: enlayer.statusAmber,
+    text: enlayer.statusAmber,
   };
 
   background = {
-    canvas: palette.gray05,
-    primary: palette.gray10,
-    secondary: palette.gray15,
+    canvas: enlayer.deepGreenShade,
+    primary: enlayer.deepGreen,
+    secondary: enlayer.deepGreenTint,
   };
 
   action = {
@@ -150,8 +188,8 @@ class DarkColors implements ThemeColorsBase<Partial<ThemeRichColor>> {
   };
 
   gradients = {
-    brandHorizontal: 'linear-gradient(270deg, #F55F3E 0%, #FF8833 100%)',
-    brandVertical: 'linear-gradient(0.01deg, #F55F3E 0.01%, #FF8833 99.99%)',
+    brandHorizontal: `linear-gradient(270deg, ${enlayer.emerald} 0%, ${enlayer.emeraldTint} 100%)`,
+    brandVertical: `linear-gradient(0.01deg, ${enlayer.emerald} 0.01%, ${enlayer.emeraldTint} 99.99%)`,
   };
 
   contrastThreshold = 3;
@@ -162,66 +200,67 @@ class DarkColors implements ThemeColorsBase<Partial<ThemeRichColor>> {
 class LightColors implements ThemeColorsBase<Partial<ThemeRichColor>> {
   mode: ThemeColorsMode = 'light';
 
-  blackBase = '36, 41, 46';
+  // Graphite
+  blackBase = '38, 45, 52';
 
   primary = {
-    main: palette.blueLightMain,
-    border: palette.blueLightText,
-    text: palette.blueLightText,
+    main: enlayer.brandGreen,
+    border: enlayer.editorialGreen,
+    text: enlayer.editorialGreen,
   };
 
   text = {
-    primary: `rgba(${this.blackBase}, 1)`,
-    secondary: `rgba(${this.blackBase}, 0.75)`,
-    disabled: `rgba(${this.blackBase}, 0.50)`,
+    primary: enlayer.graphite,
+    secondary: enlayer.mutedText,
+    disabled: `rgba(${this.blackBase}, 0.64)`,
     link: this.primary.text,
     maxContrast: palette.black,
   };
 
   border = {
-    weak: `rgba(${this.blackBase}, 0.12)`,
-    medium: `rgba(${this.blackBase}, 0.30)`,
-    strong: `rgba(${this.blackBase}, 0.40)`,
+    weak: enlayer.hairline,
+    medium: enlayer.ashGrey,
+    strong: enlayer.stoneGrey,
   };
 
   secondary = {
-    main: `rgba(${this.blackBase}, 0.16)`,
-    shade: `rgba(${this.blackBase}, 0.20)`,
-    contrastText: `rgba(${this.blackBase},  1)`,
+    main: `rgba(${this.blackBase}, 0.08)`,
+    shade: `rgba(${this.blackBase}, 0.15)`,
+    contrastText: enlayer.graphite,
     text: this.text.primary,
-    border: this.border.strong,
+    border: this.border.weak,
   };
 
   info = {
-    main: palette.blueLightMain,
-    text: palette.blueLightText,
+    main: enlayer.platformBlue,
+    text: enlayer.platformBlue,
   };
 
   error = {
-    main: palette.redLightMain,
-    text: palette.redLightText,
-    border: palette.redLightText,
+    main: enlayer.terracotta,
+    text: enlayer.chipTerracottaText,
+    border: enlayer.chipTerracottaText,
   };
 
   success = {
-    main: palette.greenLightMain,
-    text: palette.greenLightText,
+    main: enlayer.emerald,
+    text: enlayer.editorialGreen,
   };
 
   warning = {
-    main: palette.orangeLightMain,
-    text: palette.orangeLightText,
+    main: enlayer.statusAmber,
+    text: enlayer.chipGoldText,
   };
 
   background = {
-    canvas: palette.gray90,
-    primary: palette.white,
-    secondary: palette.gray100,
+    canvas: enlayer.sectionTint,
+    primary: enlayer.pureWhite,
+    secondary: enlayer.fieldTint,
   };
 
   action = {
     hover: `rgba(${this.blackBase}, 0.12)`,
-    selected: `rgba(${this.blackBase}, 0.08)`,
+    selected: enlayer.mint,
     hoverOpacity: 0.08,
     focus: `rgba(${this.blackBase}, 0.12)`,
     disabledBackground: `rgba(${this.blackBase}, 0.04)`,
@@ -230,8 +269,8 @@ class LightColors implements ThemeColorsBase<Partial<ThemeRichColor>> {
   };
 
   gradients = {
-    brandHorizontal: 'linear-gradient(90deg, #FF8833 0%, #F53E4C 100%)',
-    brandVertical: 'linear-gradient(0.01deg, #F53E4C -31.2%, #FF8833 113.07%)',
+    brandHorizontal: `linear-gradient(90deg, ${enlayer.deepGreen} 0%, ${enlayer.emerald} 100%)`,
+    brandVertical: `linear-gradient(0.01deg, ${enlayer.deepGreen} -31.2%, ${enlayer.emerald} 113.07%)`,
   };
 
   contrastThreshold = 3;
