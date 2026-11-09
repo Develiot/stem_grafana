@@ -135,6 +135,21 @@ func (fs *FS) extractFiles(_ context.Context, pluginArchive *zip.ReadCloser, plu
 
 		dstPath := filepath.Clean(filepath.Join(fs.pluginsDir, removeGitBuildFromName(zf.Name, pluginID))) // lgtm[go/zipslip]
 
+		// STEM security backport (CVE-2026-15815, adapted from upstream 9774b9822c4): every archive member must
+		// land inside this plugin's own install directory, and nothing may be written through a symlink that an
+		// earlier archive member created (that let a crafted archive write outside the plugins directory).
+		if !isWithin(installDir, dstPath) {
+			return "", fmt.Errorf("archive member %q resolves outside of the plugin install directory %q, this can be a security risk",
+				zf.Name, installDir)
+		}
+		checkPath := dstPath
+		if isSymlink(zf) {
+			checkPath = filepath.Dir(dstPath)
+		}
+		if hasSymlinkComponent(installDir, checkPath) {
+			return "", fmt.Errorf("archive member %q would be written through a symbolic link, this can be a security risk", zf.Name)
+		}
+
 		if zf.FileInfo().IsDir() {
 			// We can ignore gosec G304 here since it makes sense to give all users read access
 			// nolint:gosec
@@ -173,6 +188,39 @@ func (fs *FS) extractFiles(_ context.Context, pluginArchive *zip.ReadCloser, plu
 
 func isSymlink(file *zip.File) bool {
 	return file.Mode()&os.ModeSymlink == os.ModeSymlink
+}
+
+// isWithin reports whether p is base itself or a path below base.
+func isWithin(base, p string) bool {
+	rel, err := filepath.Rel(base, p)
+	if err != nil {
+		return false
+	}
+	return rel != ".." && !strings.HasPrefix(rel, ".."+string(os.PathSeparator)) && !filepath.IsAbs(rel)
+}
+
+// hasSymlinkComponent reports whether any existing path component below base, up to and including p,
+// is a symbolic link. Components that don't exist yet can't be symlinks, so the walk stops there.
+func hasSymlinkComponent(base, p string) bool {
+	rel, err := filepath.Rel(base, p)
+	if err != nil {
+		return true
+	}
+	cur := base
+	for _, part := range strings.Split(rel, string(os.PathSeparator)) {
+		if part == "" || part == "." {
+			continue
+		}
+		cur = filepath.Join(cur, part)
+		fi, err := os.Lstat(cur)
+		if err != nil {
+			return false
+		}
+		if fi.Mode()&os.ModeSymlink != 0 {
+			return true
+		}
+	}
+	return false
 }
 
 func extractSymlink(basePath string, file *zip.File, filePath string) error {

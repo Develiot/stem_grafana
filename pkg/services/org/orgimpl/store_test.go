@@ -11,6 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/grafana/grafana/pkg/infra/db"
+	"github.com/grafana/grafana/pkg/infra/log"
 	"github.com/grafana/grafana/pkg/services/accesscontrol"
 	"github.com/grafana/grafana/pkg/services/org"
 	"github.com/grafana/grafana/pkg/services/quota/quotaimpl"
@@ -29,6 +30,7 @@ func TestIntegrationOrgDataAccess(t *testing.T) {
 	orgStore := sqlStore{
 		db:      ss,
 		dialect: ss.GetDialect(),
+		log:     log.NewNopLogger(),
 	}
 
 	t.Run("org not found", func(t *testing.T) {
@@ -178,6 +180,7 @@ func TestIntegrationOrgDataAccess(t *testing.T) {
 		orgStore = sqlStore{
 			db:      ss,
 			dialect: ss.GetDialect(),
+			log:     log.NewNopLogger(),
 		}
 		ids := []int64{}
 
@@ -231,6 +234,7 @@ func TestIntegrationOrgUserDataAccess(t *testing.T) {
 	orgUserStore := sqlStore{
 		db:      ss,
 		dialect: ss.GetDialect(),
+		log:     log.NewNopLogger(),
 		cfg:     setting.NewCfg(),
 	}
 
@@ -307,7 +311,8 @@ func TestIntegrationOrgUserDataAccess(t *testing.T) {
 		ss := db.InitTestDB(t)
 		_, usrSvc := createOrgAndUserSvc(t, ss, ss.Cfg)
 		ac1cmd := &user.CreateUserCommand{Login: "ac1", Email: "ac1@test.com", Name: "ac1 name"}
-		ac2cmd := &user.CreateUserCommand{Login: "ac2", Email: "ac2@test.com", Name: "ac2 name", IsAdmin: true}
+		// STEM: not a server admin, since server admins are no longer deleted as orphans (CVE-2025-3580 backport)
+		ac2cmd := &user.CreateUserCommand{Login: "ac2", Email: "ac2@test.com", Name: "ac2 name"}
 		ac1, err := usrSvc.CreateUserForTests(context.Background(), ac1cmd)
 		require.NoError(t, err)
 		ac2, err := usrSvc.CreateUserForTests(context.Background(), ac2cmd)
@@ -398,6 +403,11 @@ func TestIntegrationOrgUserDataAccess(t *testing.T) {
 			err := orgUserStore.Delete(context.Background(), &org.DeleteOrgCommand{ID: ac2.OrgID})
 			require.NoError(t, err)
 
+			// make sure ac2 is in ac1 org (removing a user that is not in the org is now a no-op)
+			addCmd := org.AddOrgUserCommand{OrgID: ac1.OrgID, UserID: ac2.ID, Role: org.RoleViewer}
+			err = orgUserStore.AddOrgUser(context.Background(), &addCmd)
+			require.NoError(t, err)
+
 			// remove ac2 user from ac1 org
 			remCmd := org.RemoveOrgUserCommand{OrgID: ac1.OrgID, UserID: ac2.ID, ShouldDeleteOrphanedUser: true}
 			err = orgUserStore.RemoveOrgUser(context.Background(), &remCmd)
@@ -472,6 +482,7 @@ func TestIntegrationSQLStore_AddOrgUser(t *testing.T) {
 	orgUserStore := sqlStore{
 		db:      store,
 		dialect: store.GetDialect(),
+		log:     log.NewNopLogger(),
 		cfg:     setting.NewCfg(),
 	}
 	_, usrSvc := createOrgAndUserSvc(t, store, store.Cfg)
@@ -577,6 +588,7 @@ func TestIntegration_SQLStore_GetOrgUsers(t *testing.T) {
 	orgUserStore := sqlStore{
 		db:      store,
 		dialect: store.GetDialect(),
+		log:     log.NewNopLogger(),
 		cfg:     setting.NewCfg(),
 	}
 	orgUserStore.cfg.IsEnterprise = true
@@ -646,6 +658,7 @@ func TestIntegration_SQLStore_GetOrgUsers_PopulatesCorrectly(t *testing.T) {
 	orgUserStore := sqlStore{
 		db:      store,
 		dialect: store.GetDialect(),
+		log:     log.NewNopLogger(),
 		cfg:     setting.NewCfg(),
 	}
 	_, usrSvc := createOrgAndUserSvc(t, store, store.Cfg)
@@ -751,6 +764,7 @@ func TestIntegration_SQLStore_SearchOrgUsers(t *testing.T) {
 	orgUserStore := sqlStore{
 		db:      store,
 		dialect: store.GetDialect(),
+		log:     log.NewNopLogger(),
 		cfg:     setting.NewCfg(),
 	}
 	// orgUserStore.cfg.Skip
@@ -779,6 +793,7 @@ func TestIntegration_SQLStore_RemoveOrgUser(t *testing.T) {
 	orgUserStore := sqlStore{
 		db:      store,
 		dialect: store.GetDialect(),
+		log:     log.NewNopLogger(),
 		cfg:     setting.NewCfg(),
 	}
 	_, usrSvc := createOrgAndUserSvc(t, store, store.Cfg)

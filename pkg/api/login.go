@@ -194,6 +194,9 @@ func (hs *HTTPServer) LoginAPIPing(c *contextmodel.ReqContext) response.Response
 }
 
 func (hs *HTTPServer) LoginPost(c *contextmodel.ReqContext) response.Response {
+	// STEM security backport (CVE-2026-33382, upstream f70d3e48027): cap pre-auth request bodies.
+	c.Req.Body = http.MaxBytesReader(c.Resp, c.Req.Body, maxPreAuthFormBodySize)
+
 	if hs.Features.IsEnabled(featuremgmt.FlagAuthnService) {
 		identity, err := hs.authnService.Login(c.Req.Context(), authn.ClientForm, &authn.Request{HTTPRequest: c.Req, Resp: c.Resp})
 		if err != nil {

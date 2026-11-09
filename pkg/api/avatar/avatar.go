@@ -235,7 +235,9 @@ func (t *Thunder) Fetch(baseUrl string, avatar *Avatar) error {
 }
 
 func (t *Thunder) GoFetch(baseUrl string, avatar *Avatar) chan error {
-	c := make(chan error)
+	// STEM security backport (CVE-2026-21720): buffered, so the goroutine can finish even when
+	// update() has already given up after its timeout (an unbuffered channel leaked one goroutine per timeout).
+	c := make(chan error, 1)
 	go func() {
 		c <- t.Fetch(baseUrl, avatar)
 	}()

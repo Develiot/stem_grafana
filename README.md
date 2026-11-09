@@ -22,6 +22,16 @@ The platform allows you to query, visualize, and understand your metrics sent fr
 
 The STEM user guides are available at [stem.tbs.tech/files/](https://stem.tbs.tech/files/).
 
+## Changes to Grafana
+
+STEM is a modified version of [Grafana](https://github.com/grafana/grafana) (Grafana Labs, AGPL-3.0), based on its
+`main` branch of 3 February 2023 (9.4.0-pre). The changes are in this repository's commit history; in summary:
+
+- 2023: STEM interface (menu, login page, footer, Bulgarian translation, time picker wording, home dashboard).
+- 2026-11-06, `stem-v0.4.2`: security hardening: current Go toolchain and libraries, Grafana security fixes
+  backported, updated browser libraries and base images. See [HARDENING.md](HARDENING.md). Every backported code
+  change is marked `STEM security backport` in the source.
+
 ## License
 
 The project is distributed under [AGPL-3.0-only](LICENSE).

@@ -1,8 +1,11 @@
 # syntax=docker/dockerfile:1
 
-ARG BASE_IMAGE=alpine:3.15
-ARG JS_IMAGE=node:18-alpine3.15
-ARG GO_IMAGE=golang:1.19.4-alpine3.17
+# STEM hardening: supported base images. The runtime image (BASE_IMAGE) is the one that ships; alpine 3.15
+# has been end-of-life since 2023. GO_IMAGE matches the toolchain pinned in go.mod (stdlib security fixes).
+# JS_IMAGE is only used to build the frontend and stays on Node 18, which this Grafana version is built with.
+ARG BASE_IMAGE=alpine:3.24
+ARG JS_IMAGE=node:18-alpine
+ARG GO_IMAGE=golang:1.26.10-alpine
 
 ARG GO_SRC=go-builder
 ARG JS_SRC=js-builder
@@ -55,6 +58,9 @@ COPY scripts scripts
 COPY conf conf
 COPY .github .github
 
+# STEM hardening: the bundled SQLite C code (mattn/go-sqlite3) uses off64_t/pread64, which musl 1.2.4+ (current Alpine)
+# only provides with _LARGEFILE64_SOURCE. The flag keeps exactly the same SQLite version as before.
+ENV CGO_CFLAGS="-D_LARGEFILE64_SOURCE"
 RUN make build-go
 
 FROM ${BASE_IMAGE} as tgz-builder
@@ -105,18 +111,22 @@ RUN if grep -i -q alpine /etc/issue; then \
     fi
 
 # glibc support for alpine x86_64 only
+# STEM hardening: the sgerrand glibc 2.35 .apk conflicts with current Alpine releases (nsswitch.conf, gcompat), so
+# this uses Grafana's own method from v11.6.16: unpack just the glibc runtime libraries.
+# docker run --rm --env STDOUT=1 sgerrand/glibc-builder 2.40 /usr/glibc-compat > glibc-bin-2.40.tar.gz
+ARG GLIBC_VERSION=2.40
+
 RUN if grep -i -q alpine /etc/issue && [ `arch` = "x86_64" ]; then \
-      wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r0/glibc-2.35-r0.apk \
-        -O /tmp/glibc-2.35-r0.apk && \
-      wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r0/glibc-bin-2.35-r0.apk \
-        -O /tmp/glibc-bin-2.35-r0.apk && \
-      apk add --no-cache --allow-untrusted /tmp/glibc-2.35-r0.apk /tmp/glibc-bin-2.35-r0.apk && \
-      rm -f /lib64/ld-linux-x86-64.so.2 && \
-      ln -s /usr/glibc-compat/lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 && \
-      rm -f /tmp/glibc-2.35-r0.apk && \
-      rm -f /tmp/glibc-bin-2.35-r0.apk && \
-      rm -f /lib/ld-linux-x86-64.so.2 && \
-      rm -f /etc/ld.so.cache; \
+      wget -qO- "https://dl.grafana.com/glibc/glibc-bin-$GLIBC_VERSION.tar.gz" | tar zxf - -C / \
+        usr/glibc-compat/lib/ld-linux-x86-64.so.2 \
+        usr/glibc-compat/lib/libc.so.6 \
+        usr/glibc-compat/lib/libdl.so.2 \
+        usr/glibc-compat/lib/libm.so.6 \
+        usr/glibc-compat/lib/libpthread.so.0 \
+        usr/glibc-compat/lib/librt.so.1 \
+        usr/glibc-compat/lib/libresolv.so.2 && \
+      mkdir /lib64 && \
+      ln -s /usr/glibc-compat/lib/ld-linux-x86-64.so.2 /lib64; \
     fi
 
 COPY --from=go-src /tmp/grafana/conf ./conf

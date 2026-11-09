@@ -72,7 +72,10 @@ func (r *Runner) GetManagedChannels(orgID int64) ([]*ManagedChannel, error) {
 		// Enrich with minute rate.
 		channel, _ := live.ParseChannel(managedChannel.Channel)
 		prefix := channel.Scope + "/" + channel.Namespace
+		// STEM security backport (CVE-2026-28379, upstream 1bb8eaaf6ce): read the map under the lock.
+		r.mu.RLock()
 		namespaceStream, ok := r.streams[orgID][prefix]
+		r.mu.RUnlock()
 		if ok {
 			managedChannel.MinuteRate = namespaceStream.minuteRate(channel.Path)
 		}

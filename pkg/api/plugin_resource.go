@@ -12,12 +12,16 @@ import (
 
 	"github.com/grafana/grafana-plugin-sdk-go/backend"
 
+	"github.com/grafana/grafana/pkg/api/response"
 	"github.com/grafana/grafana/pkg/plugins/backendplugin"
 	contextmodel "github.com/grafana/grafana/pkg/services/contexthandler/model"
 	"github.com/grafana/grafana/pkg/services/datasources"
 	"github.com/grafana/grafana/pkg/util/proxyutil"
 	"github.com/grafana/grafana/pkg/web"
 )
+
+// STEM security backport (CVE-2026-28383, upstream 1bb8eaaf6ce): cap plugin resource request bodies.
+const maxResourceBodySize = 128 * 1024 * 1024 // 128 MiB
 
 // CallResource passes a resource call from a plugin to the backend plugin.
 //
@@ -99,7 +103,7 @@ func (hs *HTTPServer) pluginResourceRequest(c *contextmodel.ReqContext) (*http.R
 func (hs *HTTPServer) makePluginResourceRequest(w http.ResponseWriter, req *http.Request, pCtx backend.PluginContext) error {
 	proxyutil.PrepareProxyRequest(req)
 
-	body, err := io.ReadAll(req.Body)
+	body, err := io.ReadAll(http.MaxBytesReader(w, req.Body, maxResourceBodySize))
 	if err != nil {
 		return fmt.Errorf("failed to read request body: %w", err)
 	}
@@ -208,6 +212,12 @@ func (hs *HTTPServer) flushStream(stream callResourceClientResponseStream, w htt
 }
 
 func handleCallResourceError(err error, reqCtx *contextmodel.ReqContext) {
+	var maxBytesErr *http.MaxBytesError
+	if errors.As(err, &maxBytesErr) {
+		resp := response.Error(http.StatusRequestEntityTooLarge, "Request body too large", err)
+		resp.WriteTo(reqCtx)
+		return
+	}
 	if errors.Is(err, backendplugin.ErrPluginUnavailable) {
 		reqCtx.JsonApiErr(503, "Plugin unavailable", err)
 		return

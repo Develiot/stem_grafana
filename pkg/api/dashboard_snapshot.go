@@ -16,6 +16,7 @@ import (
 	"github.com/grafana/grafana/pkg/services/dashboards"
 	"github.com/grafana/grafana/pkg/services/dashboardsnapshots"
 	"github.com/grafana/grafana/pkg/services/guardian"
+	"github.com/grafana/grafana/pkg/services/org"
 	"github.com/grafana/grafana/pkg/setting"
 	"github.com/grafana/grafana/pkg/util"
 	"github.com/grafana/grafana/pkg/web"
@@ -363,6 +364,21 @@ func (hs *HTTPServer) DeleteDashboardSnapshot(c *contextmodel.ReqContext) respon
 	// all permissions must be explicit, so the lack of a rule for dashboard 0 means the guardian will reject.
 	dashboardID := queryResult.Dashboard.Get("id").MustInt64()
 
+	// STEM security backport (CVE-2026-28380, adapted from upstream 1bb8eaaf6ce): a snapshot whose dashboard
+	// id is missing, or whose dashboard no longer exists, used to be deletable by any signed-in user who knew
+	// its key. Resolve the dashboard by UID when the id is missing, and otherwise only let the snapshot's
+	// creator or an org Admin delete it.
+	if dashboardUID := queryResult.Dashboard.Get("uid").MustString(); dashboardID == 0 && dashboardUID != "" {
+		dash, err := hs.DashboardService.GetDashboard(c.Req.Context(), &dashboards.GetDashboardQuery{UID: dashboardUID, OrgID: c.OrgID})
+		if err != nil && !errors.Is(err, dashboards.ErrDashboardNotFound) {
+			return response.Error(http.StatusInternalServerError, "Failed to get dashboard by UID", err)
+		}
+		if dash != nil {
+			dashboardID = dash.ID
+		}
+	}
+	isCreatorOrAdmin := queryResult.UserID == c.SignedInUser.UserID || c.SignedInUser.HasRole(org.RoleAdmin)
+
 	if dashboardID != 0 {
 		g, err := guardian.New(c.Req.Context(), dashboardID, c.OrgID, c.SignedInUser)
 		if err != nil {
@@ -375,9 +391,15 @@ func (hs *HTTPServer) DeleteDashboardSnapshot(c *contextmodel.ReqContext) respon
 			return response.Error(http.StatusInternalServerError, "Error while checking permissions for snapshot", err)
 		}
 
-		if !canEdit && queryResult.UserID != c.SignedInUser.UserID && !errors.Is(err, dashboards.ErrDashboardNotFound) {
+		if errors.Is(err, dashboards.ErrDashboardNotFound) {
+			if !isCreatorOrAdmin {
+				return response.Error(http.StatusForbidden, "Access denied to this snapshot", nil)
+			}
+		} else if !canEdit && queryResult.UserID != c.SignedInUser.UserID {
 			return response.Error(http.StatusForbidden, "Access denied to this snapshot", nil)
 		}
+	} else if !isCreatorOrAdmin {
+		return response.Error(http.StatusForbidden, "Access denied to this snapshot", nil)
 	}
 
 	cmd := &dashboardsnapshots.DeleteDashboardSnapshotCommand{DeleteKey: queryResult.DeleteKey}

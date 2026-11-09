@@ -167,7 +167,8 @@ func (api *API) authorize(method, path string) web.Handler {
 		eval = ac.EvalPermission(ac.ActionAlertingNotificationsRead)
 	case http.MethodPost + "/api/alertmanager/grafana/config/api/v1/receivers/test":
 		fallback = middleware.ReqEditorRole
-		eval = ac.EvalPermission(ac.ActionAlertingNotificationsRead)
+		// STEM security backport (CVE-2023-2183, upstream 157004db287): testing a receiver needs write access.
+		eval = ac.EvalPermission(ac.ActionAlertingNotificationsWrite)
 
 	// External Alertmanager Paths
 	case http.MethodDelete + "/api/alertmanager/{DatasourceUID}/config/api/v1/alerts":

@@ -697,7 +697,8 @@ func (hs *HTTPServer) registerRoutes() {
 	r.Any("/api/gnet/*", reqSignedIn, hs.ProxyGnetRequest)
 
 	// Gravatar service
-	r.Get("/avatar/:hash", hs.AvatarCacheServer.Handler)
+	// STEM security backport (CVE-2026-21720, upstream 0de00bfaca2): avatars require sign-in.
+	r.Get("/avatar/:hash", reqSignedIn, hs.AvatarCacheServer.Handler)
 
 	// Snapshots
 	r.Post("/api/snapshots/", reqSnapshotPublicModeOrSignedIn, hs.CreateDashboardSnapshot)

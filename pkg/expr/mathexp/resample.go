@@ -7,11 +7,26 @@ import (
 	"github.com/grafana/grafana-plugin-sdk-go/data"
 )
 
+// STEM security backport (CVE-2026-27879, upstream 4da40799451): cap the resampled series length
+// so a viewer can't make the server allocate unbounded memory with a tiny interval.
+const MaxNewSeriesLength int = 1_000_000
+
+type ErrNewSeriesLengthTooLong struct {
+	newSeriesLength int
+}
+
+func (e ErrNewSeriesLengthTooLong) Error() string {
+	return fmt.Sprintf("Resample series length to large, max allowed %d, wanted %d", MaxNewSeriesLength, e.newSeriesLength)
+}
+
 // Resample turns the Series into a Number based on the given reduction function
 func (s Series) Resample(refID string, interval time.Duration, downsampler string, upsampler string, from, to time.Time) (Series, error) {
 	newSeriesLength := int(float64(to.Sub(from).Nanoseconds()) / float64(interval.Nanoseconds()))
 	if newSeriesLength <= 0 {
 		return s, fmt.Errorf("the series cannot be sampled further; the time range is shorter than the interval")
+	}
+	if newSeriesLength > MaxNewSeriesLength {
+		return s, ErrNewSeriesLengthTooLong{newSeriesLength: newSeriesLength}
 	}
 	resampled := NewSeries(refID, s.GetLabels(), newSeriesLength+1)
 	bookmark := 0

@@ -90,7 +90,9 @@ func (s *Service) QueryData(ctx context.Context, user *user.SignedInUser, skipCa
 // executeConcurrentQueries executes queries to multiple datasources concurrently and returns the aggregate result.
 func (s *Service) executeConcurrentQueries(ctx context.Context, user *user.SignedInUser, skipCache bool, reqDTO dtos.MetricRequest, queriesbyDs map[string][]parsedQuery) (*backend.QueryDataResponse, error) {
 	g, ctx := errgroup.WithContext(ctx)
-	g.SetLimit(8) // arbitrary limit to prevent too many concurrent requests
+	// STEM security backport (CVE-2023-2801, upstream cf7d07d18b5): run mixed-datasource queries one at a time;
+	// running them concurrently could cause concurrent map writes in the plugin middleware and crash the server.
+	g.SetLimit(1)
 	rchan := make(chan backend.Responses, len(queriesbyDs))
 
 	// Create panic recovery function for loop below

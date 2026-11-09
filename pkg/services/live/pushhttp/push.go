@@ -59,6 +59,8 @@ func (g *Gateway) Handle(ctx *contextmodel.ReqContext) {
 	urlValues := ctx.Req.URL.Query()
 	frameFormat := pushurl.FrameFormatFromValues(urlValues)
 
+	// STEM security backport (CVE-2026-28376, upstream 1bb8eaaf6ce): cap each pushed message at 500 KiB.
+	ctx.Req.Body = http.MaxBytesReader(ctx.Resp, ctx.Req.Body, 500*1024)
 	body, err := io.ReadAll(ctx.Req.Body)
 	if err != nil {
 		logger.Error("Error reading body", "error", err)
@@ -101,6 +103,8 @@ func (g *Gateway) Handle(ctx *contextmodel.ReqContext) {
 func (g *Gateway) HandlePipelinePush(ctx *contextmodel.ReqContext) {
 	channelID := web.Params(ctx.Req)["*"]
 
+	// STEM security backport (CVE-2026-28376, upstream 1bb8eaaf6ce): cap each pushed message at 500 KiB.
+	ctx.Req.Body = http.MaxBytesReader(ctx.Resp, ctx.Req.Body, 500*1024)
 	body, err := io.ReadAll(ctx.Req.Body)
 	if err != nil {
 		logger.Error("Error reading body", "error", err)

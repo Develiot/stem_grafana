@@ -222,6 +222,9 @@ func (hs *HTTPServer) GetInviteInfoByCode(c *contextmodel.ReqContext) response.R
 }
 
 func (hs *HTTPServer) CompleteInvite(c *contextmodel.ReqContext) response.Response {
+	// STEM security backport (CVE-2026-33382, upstream f70d3e48027): cap pre-auth request bodies.
+	c.Req.Body = http.MaxBytesReader(c.Resp, c.Req.Body, maxPreAuthFormBodySize)
+
 	completeInvite := dtos.CompleteInviteForm{}
 	var err error
 	if err = web.Bind(c.Req, &completeInvite); err != nil {

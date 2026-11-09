@@ -474,8 +474,12 @@ func (dr *DashboardServiceImpl) ImportDashboard(ctx context.Context, dto *dashbo
 		return nil, err
 	}
 
-	if err := dr.setDefaultPermissions(ctx, dto, dash, false); err != nil {
-		dr.log.Error("Could not make user admin", "dashboard", dash.Title, "user", dto.User.UserID, "error", err)
+	// STEM security backport (CVE-2026-33377, upstream 1bb8eaaf6ce): only a newly created dashboard gets
+	// default permissions; importing over an existing dashboard must not reset its permissions.
+	if dto.Dashboard.ID == 0 {
+		if err := dr.setDefaultPermissions(ctx, dto, dash, false); err != nil {
+			dr.log.Error("Could not make user admin", "dashboard", dash.Title, "user", dto.User.UserID, "error", err)
+		}
 	}
 
 	return dash, nil

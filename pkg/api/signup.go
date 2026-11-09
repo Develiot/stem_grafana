@@ -18,6 +18,9 @@ import (
 	"github.com/grafana/grafana/pkg/web"
 )
 
+// maxPreAuthFormBodySize caps pre-auth form-shaped request bodies (signup, password reset, invite completion, login).
+const maxPreAuthFormBodySize = 100 * 1024 // 100 KiB
+
 // GET /api/user/signup/options
 func GetSignUpOptions(c *contextmodel.ReqContext) response.Response {
 	return response.JSON(http.StatusOK, util.DynMap{
@@ -28,6 +31,9 @@ func GetSignUpOptions(c *contextmodel.ReqContext) response.Response {
 
 // POST /api/user/signup
 func (hs *HTTPServer) SignUp(c *contextmodel.ReqContext) response.Response {
+	// STEM security backport (CVE-2026-33382, upstream f70d3e48027): cap pre-auth request bodies.
+	c.Req.Body = http.MaxBytesReader(c.Resp, c.Req.Body, maxPreAuthFormBodySize)
+
 	form := dtos.SignUpForm{}
 	var err error
 	if err = web.Bind(c.Req, &form); err != nil {
@@ -76,6 +82,9 @@ func (hs *HTTPServer) SignUp(c *contextmodel.ReqContext) response.Response {
 }
 
 func (hs *HTTPServer) SignUpStep2(c *contextmodel.ReqContext) response.Response {
+	// STEM security backport (CVE-2026-33382, upstream f70d3e48027): cap pre-auth request bodies.
+	c.Req.Body = http.MaxBytesReader(c.Resp, c.Req.Body, maxPreAuthFormBodySize)
+
 	form := dtos.SignUpStep2Form{}
 	if err := web.Bind(c.Req, &form); err != nil {
 		return response.Error(http.StatusBadRequest, "bad request data", err)

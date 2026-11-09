@@ -17,6 +17,9 @@ import (
 )
 
 func (hs *HTTPServer) SendResetPasswordEmail(c *contextmodel.ReqContext) response.Response {
+	// STEM security backport (CVE-2026-33382, upstream f70d3e48027): cap pre-auth request bodies.
+	c.Req.Body = http.MaxBytesReader(c.Resp, c.Req.Body, maxPreAuthFormBodySize)
+
 	form := dtos.SendResetPasswordEmailForm{}
 	if err := web.Bind(c.Req, &form); err != nil {
 		return response.Error(http.StatusBadRequest, "bad request data", err)
@@ -55,6 +58,9 @@ func (hs *HTTPServer) SendResetPasswordEmail(c *contextmodel.ReqContext) respons
 }
 
 func (hs *HTTPServer) ResetPassword(c *contextmodel.ReqContext) response.Response {
+	// STEM security backport (CVE-2026-33382, upstream f70d3e48027): cap pre-auth request bodies.
+	c.Req.Body = http.MaxBytesReader(c.Resp, c.Req.Body, maxPreAuthFormBodySize)
+
 	form := dtos.ResetUserPasswordForm{}
 	if err := web.Bind(c.Req, &form); err != nil {
 		return response.Error(http.StatusBadRequest, "bad request data", err)

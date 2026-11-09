@@ -378,3 +378,88 @@ func (f *fakeLogger) Warn(_ ...interface{})               {}
 func (f *fakeLogger) Warnf(_ string, _ ...interface{})    {}
 func (f *fakeLogger) Error(_ ...interface{})              {}
 func (f *fakeLogger) Errorf(_ string, _ ...interface{})   {}
+
+// STEM: regression tests for the CVE-2026-15815 backport (archive members escaping the plugin directory).
+func TestExtractFilesRejectsEscapes(t *testing.T) {
+	skipWindows(t) // creating symlinks needs extra privileges on Windows
+
+	build := func(t *testing.T, entries []struct {
+		name, body string
+		symlink    bool
+	}) *zip.ReadCloser {
+		t.Helper()
+		p := filepath.Join(t.TempDir(), "plugin.zip")
+		f, err := os.Create(p)
+		require.NoError(t, err)
+		w := zip.NewWriter(f)
+		for _, e := range entries {
+			h := &zip.FileHeader{Name: e.name, Method: zip.Store}
+			if e.symlink {
+				h.SetMode(os.ModeSymlink | 0777)
+			} else {
+				h.SetMode(0644)
+			}
+			fw, err := w.CreateHeader(h)
+			require.NoError(t, err)
+			_, err = fw.Write([]byte(e.body))
+			require.NoError(t, err)
+		}
+		require.NoError(t, w.Close())
+		require.NoError(t, f.Close())
+		return zipFile(t, p)
+	}
+
+	t.Run("file written through a symlinked directory is rejected", func(t *testing.T) {
+		pluginsDir := t.TempDir()
+		outside := t.TempDir()
+		i := &FS{log: &fakeLogger{}, pluginsDir: pluginsDir}
+		// a symlink pointing at the plugin's own dir passes the relative-symlink check; a later member then
+		// tries to write through a chain of links
+		_, err := i.extractFiles(context.Background(), build(t, []struct {
+			name, body string
+			symlink    bool
+		}{
+			{name: "evil-app/", body: ""},
+			{name: "evil-app/link", body: ".", symlink: true},
+			{name: "evil-app/link/module.js", body: "x"},
+		}), "evil-app")
+		require.Error(t, err)
+		entries, _ := os.ReadDir(outside)
+		require.Empty(t, entries)
+	})
+
+	t.Run("member naming another plugin's directory stays inside this plugin's directory", func(t *testing.T) {
+		pluginsDir := t.TempDir()
+		i := &FS{log: &fakeLogger{}, pluginsDir: pluginsDir}
+		// the archive's top-level folder is always renamed to the plugin ID, so this lands in evil-app/
+		_, err := i.extractFiles(context.Background(), build(t, []struct {
+			name, body string
+			symlink    bool
+		}{
+			{name: "other-app/module.js", body: "overwritten"},
+		}), "evil-app")
+		require.NoError(t, err)
+		_, statErr := os.Stat(filepath.Join(pluginsDir, "other-app", "module.js"))
+		require.True(t, os.IsNotExist(statErr))
+		_, err = os.Stat(filepath.Join(pluginsDir, "evil-app", "module.js"))
+		require.NoError(t, err)
+	})
+
+	t.Run("normal plugin archive still extracts", func(t *testing.T) {
+		pluginsDir := t.TempDir()
+		i := &FS{log: &fakeLogger{}, pluginsDir: pluginsDir}
+		path, err := i.extractFiles(context.Background(), build(t, []struct {
+			name, body string
+			symlink    bool
+		}{
+			{name: "good-app/", body: ""},
+			{name: "good-app/plugin.json", body: "{}"},
+			{name: "good-app/img/", body: ""},
+			{name: "good-app/img/logo.svg", body: "<svg/>"},
+		}), "good-app")
+		require.NoError(t, err)
+		require.Equal(t, filepath.Join(pluginsDir, "good-app"), path)
+		_, err = os.Stat(filepath.Join(pluginsDir, "good-app", "img", "logo.svg"))
+		require.NoError(t, err)
+	})
+}
